@@ -94,3 +94,5 @@
 .n-a{left:8%;top:22%}.n-b{left:8%;top:54%}.n-c{left:55%;top:40%;border-color:#7aa2f7aa}.n-c i:first-of-type{background:#7aa2f7}
 @keyframes eq{50%{transform:scaleY(.4)}}@keyframes prog{from{width:5%}to{width:95%}}@keyframes beat{50%{box-shadow:0 0 80px #e0af68;filter:brightness(1.15)}}@keyframes dash{to{stroke-dashoffset:-24}}
 @media(max-width:1100px){.esp-screen,.panel{transform:translate(-50%,-52%) scale(.85)}}
+
+.contact-links{display:flex;gap:14px;flex-wrap:wrap}.button.ghost{border:1px solid #bca4ff55;color:var(--text);background:#bca4ff0d}.button.ghost:hover{background:#bca4ff22}
