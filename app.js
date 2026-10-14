@@ -67,6 +67,7 @@ function drawBulb(time){
 function frame(t){if(visible&&!document.hidden&&!paused)drawBulb(t);requestAnimationFrame(frame)}requestAnimationFrame(frame);
 function setHue(h){hue=Number(h);const swatch=$('[data-hue="'+h+'"]');$$('.swatch').forEach(b=>{const active=b===swatch;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active))});document.documentElement.style.setProperty('--accent','hsl('+h+',75%,78%)');drawBulb(performance.now())}
 $$('.swatch').forEach(b=>b.addEventListener('click',()=>setHue(b.dataset.hue)));
+const paintRange=r=>r.style.setProperty('--fill',((r.value-r.min)/(r.max-r.min)*100)+'%');document.querySelectorAll('input[type=range]').forEach(r=>{paintRange(r);r.addEventListener('input',()=>paintRange(r))});
 $('#brightness').addEventListener('input',e=>{brightness=e.target.value/100;$('#brightness-value').textContent=e.target.value+'%';drawBulb(performance.now())});
 $('#light-power').addEventListener('click',()=>{lightOn=!lightOn;$('#light-power').setAttribute('aria-pressed',String(lightOn));drawBulb(performance.now())});
 
@@ -141,7 +142,7 @@ points.forEach((p,i)=>{
 });
 const rocket=svg('g',{'aria-hidden':true,'pointer-events':'none'});rocket.innerHTML='<ellipse cx="-20" cy="0" rx="10" ry="4" fill="#eec287" opacity=".75"/><path d="M-12-6-17-12-5-6M-12 6-17 12-5 6" fill="#b69cf5"/><path d="M16 0C8-9-3-8-12-6V6C-3 8 8 9 16 0" fill="#efedf6"/><path d="M16 0 7-6 7 6Z" fill="#b69cf5"/><circle r="3.2" fill="#322844"/>';chart.append(rocket);
 let replayFrame=0,replaying=false;
-function selectYear(i){$('#timeline').value=i;$('#year-value').textContent=values[i];$('#year-label').textContent=years[i];$('#timeline-year').textContent=years[i];crosshair.setAttribute('x1',points[i].x);crosshair.setAttribute('x2',points[i].x);crosshair.setAttribute('y1',points[i].y);progressPath.setAttribute('d','M'+points.slice(0,i+1).map(p=>p.x+','+p.y).join(' L'));let p=points[i],prev=points[Math.max(0,i-1)];let angle=i?Math.atan2(p.y-prev.y,p.x-prev.x)*180/Math.PI:-25;rocket.setAttribute('transform','translate('+p.x+','+(p.y-23)+') rotate('+angle+')');$$('[data-year-index]',chart).forEach(g=>{g.setAttribute('aria-pressed',String(Number(g.dataset.yearIndex)===i));$('text',g).setAttribute('fill',Number(g.dataset.yearIndex)===i?'#e0d0ff':'#aaa1b7')})}
+function selectYear(i){$('#timeline').value=i;if(typeof paintRange==='function')paintRange($('#timeline'));$('#year-value').textContent=values[i];$('#year-label').textContent=years[i];$('#timeline-year').textContent=years[i];crosshair.setAttribute('x1',points[i].x);crosshair.setAttribute('x2',points[i].x);crosshair.setAttribute('y1',points[i].y);progressPath.setAttribute('d','M'+points.slice(0,i+1).map(p=>p.x+','+p.y).join(' L'));let p=points[i],prev=points[Math.max(0,i-1)];let angle=i?Math.atan2(p.y-prev.y,p.x-prev.x)*180/Math.PI:-25;rocket.setAttribute('transform','translate('+p.x+','+(p.y-23)+') rotate('+angle+')');$$('[data-year-index]',chart).forEach(g=>{g.setAttribute('aria-pressed',String(Number(g.dataset.yearIndex)===i));$('text',g).setAttribute('fill',Number(g.dataset.yearIndex)===i?'#e0d0ff':'#aaa1b7')})}
 selectYear(9);
 $('#timeline').addEventListener('input',e=>{cancelAnimationFrame(replayFrame);replaying=false;selectYear(Number(e.target.value))});
 $('#replay').addEventListener('click',()=>{
