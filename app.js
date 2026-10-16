@@ -121,33 +121,95 @@ function closeOnBackdrop(d){d.addEventListener('click',e=>{const r=d.getBounding
 closeOnBackdrop(dialog);
 // Keep focus areas intentionally explorable; multiple can stay open.
 
-// Inspectable chart, based on the same dated snapshot as the profile.
-const years=[2017,2018,2019,2020,2021,2022,2023,2024,2025,2026],values=[13,0,19,7,71,5,96,77,104,315];
-const points=values.map((v,i)=>({x:35+i*64,y:255-v/315*205}));
-const chart=$('#history-chart');const ns='http://www.w3.org/2000/svg';
-const svg=(tag,attrs={},text)=>{const n=document.createElementNS(ns,tag);Object.entries(attrs).forEach(([k,v])=>n.setAttribute(k,String(v)));if(text!==undefined)n.textContent=text;return n};
-const defs=svg('defs');
-const fill=svg('linearGradient',{id:'chart-fill',x1:0,y1:0,x2:0,y2:1});fill.append(svg('stop',{offset:0,'stop-color':'#bca4ff','stop-opacity':.22}),svg('stop',{offset:1,'stop-color':'#bca4ff','stop-opacity':0}));defs.append(fill);chart.append(defs);
-[0,100,200,300].forEach(v=>{let y=255-v/315*205;chart.append(svg('line',{x1:35,y1:y,x2:611,y2:y,stroke:'#ffffff10','stroke-dasharray':'3 7'}));chart.append(svg('text',{x:5,y:y+4,fill:'#9990ac','font-size':8},v))});
-const linePath='M'+points.map(p=>p.x+','+p.y).join(' L');
-const area=svg('path',{d:linePath+' L611,255 L35,255 Z',fill:'url(#chart-fill)'});chart.append(area);
-chart.append(svg('path',{d:linePath,fill:'none',stroke:'#554964','stroke-width':1.5}));
-const progressPath=svg('path',{d:linePath,fill:'none',stroke:'#c3adff','stroke-width':2.5,'stroke-linecap':'round'});chart.append(progressPath);
-const crosshair=svg('line',{x1:611,y1:42,x2:611,y2:258,stroke:'#c3adff60','stroke-dasharray':'3 5'});chart.append(crosshair);
-points.forEach((p,i)=>{
- const g=svg('g',{'data-year-index':i,role:'button',tabindex:0,'aria-label':years[i]+': '+values[i]+' contributions',style:'cursor:pointer'});
- g.append(svg('rect',{x:p.x-22,y:20,width:44,height:275,fill:'transparent'}),svg('circle',{cx:p.x,cy:p.y,r:3.5,fill:'#17131f',stroke:'#bca4ff','stroke-width':1.5}));
- g.append(svg('text',{x:p.x,y:283,fill:'#aaa1b7','font-size':9,'text-anchor':'middle'},String(years[i]).slice(2)));
- const select=()=>{cancelAnimationFrame(replayFrame);replaying=false;selectYear(i)};g.addEventListener('click',select);g.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();select()}if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();const next=Math.max(0,Math.min(9,i+(e.key==='ArrowRight'?1:-1)));selectYear(next);$('[data-year-index="'+next+'"]',chart).focus()}});chart.append(g)
-});
-const rocket=svg('g',{'aria-hidden':true,'pointer-events':'none'});rocket.innerHTML='<ellipse cx="-20" cy="0" rx="10" ry="4" fill="#eec287" opacity=".75"/><path d="M-12-6-17-12-5-6M-12 6-17 12-5 6" fill="#b69cf5"/><path d="M16 0C8-9-3-8-12-6V6C-3 8 8 9 16 0" fill="#efedf6"/><path d="M16 0 7-6 7 6Z" fill="#b69cf5"/><circle r="3.2" fill="#322844"/>';chart.append(rocket);
-let replayFrame=0,replaying=false;
-function selectYear(i){$('#timeline').value=i;if(typeof paintRange==='function')paintRange($('#timeline'));$('#year-value').textContent=values[i];$('#year-label').textContent=years[i];$('#timeline-year').textContent=years[i];crosshair.setAttribute('x1',points[i].x);crosshair.setAttribute('x2',points[i].x);crosshair.setAttribute('y1',points[i].y);progressPath.setAttribute('d','M'+points.slice(0,i+1).map(p=>p.x+','+p.y).join(' L'));let p=points[i],prev=points[Math.max(0,i-1)];let angle=i?Math.atan2(p.y-prev.y,p.x-prev.x)*180/Math.PI:-25;rocket.setAttribute('transform','translate('+p.x+','+(p.y-23)+') rotate('+angle+')');$$('[data-year-index]',chart).forEach(g=>{g.setAttribute('aria-pressed',String(Number(g.dataset.yearIndex)===i));$('text',g).setAttribute('fill',Number(g.dataset.yearIndex)===i?'#e0d0ff':'#aaa1b7')})}
-selectYear(9);
-$('#timeline').addEventListener('input',e=>{cancelAnimationFrame(replayFrame);replaying=false;selectYear(Number(e.target.value))});
-$('#replay').addEventListener('click',()=>{
- cancelAnimationFrame(replayFrame);if(paused){selectYear(9);return}replaying=true;const start=performance.now();function tick(t){const f=Math.min(9,(t-start)/320);const index=Math.floor(f);selectYear(index);if(index<9){const a=points[index],b=points[index+1],fraction=f-index;rocket.setAttribute('transform','translate('+(a.x+(b.x-a.x)*fraction)+','+(a.y+(b.y-a.y)*fraction-23)+') rotate('+(Math.atan2(b.y-a.y,b.x-a.x)*180/Math.PI)+')');progressPath.setAttribute('d','M'+points.slice(0,index+1).map(p=>p.x+','+p.y).join(' L')+' L'+(a.x+(b.x-a.x)*fraction)+','+(a.y+(b.y-a.y)*fraction));replayFrame=requestAnimationFrame(tick)}else replaying=false}replayFrame=requestAnimationFrame(tick)
-});
+// Inspectable chart. Numbers come from data/contributions.json, refreshed daily.
+const snapshot={years:[2017,2018,2019,2020,2021,2022,2023,2024,2025,2026],values:[13,0,19,7,71,5,96,77,104,343]};
+async function loadContributions(){
+  const urls=['https://raw.githubusercontent.com/artur-safonov/portfolio/main/data/contributions.json','./data/contributions.json'];
+  for(const url of urls){
+    try{
+      const response=await fetch(url,{cache:'no-store'});
+      if(!response.ok) continue;
+      const data=await response.json();
+      if(Array.isArray(data.years)&&Array.isArray(data.values)&&data.years.length>1&&data.years.length===data.values.length) return data;
+    }catch{}
+  }
+  return snapshot;
+}
+function drawContributionChart(series){
+  const years=series.years.map(Number), values=series.values.map(Number), n=years.length;
+  const chart=$('#history-chart');
+  chart.replaceChildren();
+  const ns='http://www.w3.org/2000/svg';
+  const svg=(tag,attrs={},text)=>{const node=document.createElementNS(ns,tag);Object.entries(attrs).forEach(([k,v])=>node.setAttribute(k,String(v)));if(text!==undefined)node.textContent=text;return node};
+  const topTick=Math.max(100,Math.ceil(Math.max(...values)/100)*100);
+  const left=35,right=620,base=255,top=42,slot=n>1?(right-left)/(n-1):0;
+  const points=values.map((v,i)=>({x:left+i*slot,y:base-(v/topTick)*(base-top)}));
+  const defs=svg('defs');
+  const fill=svg('linearGradient',{id:'chart-fill',x1:0,y1:0,x2:0,y2:1});
+  fill.append(svg('stop',{offset:0,'stop-color':'#bca4ff','stop-opacity':.22}),svg('stop',{offset:1,'stop-color':'#bca4ff','stop-opacity':0}));
+  defs.append(fill);chart.append(defs);
+  for(let tick=0;tick<=topTick+0.1;tick+=topTick/3){
+    const y=base-(tick/topTick)*(base-top);
+    chart.append(svg('line',{x1:left,y1:y,x2:right,y2:y,stroke:'#ffffff10','stroke-dasharray':'3 7'}));
+    chart.append(svg('text',{x:5,y:y+4,fill:'#9990ac','font-size':8},Math.round(tick)));
+  }
+  const linePath='M'+points.map(p=>p.x+','+p.y).join(' L');
+  chart.append(svg('path',{d:linePath+' L'+points[n-1].x+','+base+' L'+points[0].x+','+base+' Z',fill:'url(#chart-fill)'}));
+  chart.append(svg('path',{d:linePath,fill:'none',stroke:'#554964','stroke-width':1.5}));
+  const progressPath=svg('path',{d:linePath,fill:'none',stroke:'#c3adff','stroke-width':2.5,'stroke-linecap':'round'});
+  chart.append(progressPath);
+  const crosshair=svg('line',{x1:points[n-1].x,y1:top,x2:points[n-1].x,y2:base+3,stroke:'#c3adff60','stroke-dasharray':'3 5'});
+  chart.append(crosshair);
+  const rocket=svg('g',{'aria-hidden':true,'pointer-events':'none'});
+  rocket.innerHTML='<ellipse cx="-20" cy="0" rx="10" ry="4" fill="#eec287" opacity=".75"/><path d="M-12-6-17-12-5-6M-12 6-17 12-5 6" fill="#b69cf5"/><path d="M16 0C8-9-3-8-12-6V6C-3 8 8 9 16 0" fill="#efedf6"/><path d="M16 0 7-6 7 6Z" fill="#b69cf5"/><circle r="3.2" fill="#322844"/>';
+  chart.append(rocket);
+  const timeline=$('#timeline');
+  timeline.min='0';timeline.max=String(n-1);timeline.value=String(n-1);
+  let replayFrame=0;
+  function selectYear(i){
+    i=Math.max(0,Math.min(n-1,i));
+    timeline.value=String(i);
+    if(typeof paintRange==='function')paintRange(timeline);
+    $('#year-value').textContent=values[i];
+    $('#year-label').textContent=years[i];
+    $('#timeline-year').textContent=years[i];
+    crosshair.setAttribute('x1',points[i].x);crosshair.setAttribute('x2',points[i].x);crosshair.setAttribute('y1',points[i].y);
+    progressPath.setAttribute('d','M'+points.slice(0,i+1).map(p=>p.x+','+p.y).join(' L'));
+    const point=points[i],prev=points[Math.max(0,i-1)];
+    const angle=i?Math.atan2(point.y-prev.y,point.x-prev.x)*180/Math.PI:-25;
+    rocket.setAttribute('transform','translate('+point.x+','+(point.y-23)+') rotate('+angle+')');
+    $$('[data-year-index]',chart).forEach(g=>{const on=Number(g.dataset.yearIndex)===i;g.setAttribute('aria-pressed',String(on));$('text',g).setAttribute('fill',on?'#e0d0ff':'#aaa1b7')});
+  }
+  points.forEach((p,i)=>{
+    const g=svg('g',{'data-year-index':i,role:'button',tabindex:0,'aria-label':years[i]+': '+values[i]+' contributions',style:'cursor:pointer'});
+    g.append(svg('rect',{x:p.x-22,y:20,width:44,height:275,fill:'transparent'}),svg('circle',{cx:p.x,cy:p.y,r:3.5,fill:'#17131f',stroke:'#bca4ff','stroke-width':1.5}));
+    g.append(svg('text',{x:p.x,y:283,fill:'#aaa1b7','font-size':9,'text-anchor':'middle'},String(years[i]).slice(2)));
+    const select=()=>{cancelAnimationFrame(replayFrame);selectYear(i)};
+    g.addEventListener('click',select);
+    g.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();select()}if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();const next=Math.max(0,Math.min(n-1,i+(e.key==='ArrowRight'?1:-1)));selectYear(next);$('[data-year-index="'+next+'"]',chart).focus()}});
+    chart.append(g);
+  });
+  selectYear(n-1);
+  timeline.oninput=e=>{cancelAnimationFrame(replayFrame);selectYear(Number(e.target.value))};
+  $('#replay').onclick=()=>{
+    cancelAnimationFrame(replayFrame);
+    if(paused){selectYear(n-1);return}
+    const start=performance.now();
+    const tick=t=>{
+      const f=Math.min(n-1,(t-start)/Math.max(280,320*(n/10)));
+      const index=Math.floor(f);
+      selectYear(index);
+      if(index<n-1){
+        const a=points[index],b=points[index+1],fraction=f-index;
+        rocket.setAttribute('transform','translate('+(a.x+(b.x-a.x)*fraction)+','+(a.y+(b.y-a.y)*fraction-23)+') rotate('+(Math.atan2(b.y-a.y,b.x-a.x)*180/Math.PI)+')');
+        progressPath.setAttribute('d','M'+points.slice(0,index+1).map(p=>p.x+','+p.y).join(' L')+' L'+(a.x+(b.x-a.x)*fraction)+','+(a.y+(b.y-a.y)*fraction));
+        replayFrame=requestAnimationFrame(tick);
+      }
+    };
+    replayFrame=requestAnimationFrame(tick);
+  };
+}
+loadContributions().then(drawContributionChart);
 
 // Useful navigation rather than a pretend terminal.
 const command=$('#command-dialog'),search=$('#command-search');
