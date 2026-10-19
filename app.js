@@ -71,40 +71,6 @@ const paintRange=r=>r.style.setProperty('--fill',((r.value-r.min)/(r.max-r.min)*
 $('#brightness').addEventListener('input',e=>{brightness=e.target.value/100;$('#brightness-value').textContent=e.target.value+'%';drawBulb(performance.now())});
 $('#light-power').addEventListener('click',()=>{lightOn=!lightOn;$('#light-power').setAttribute('aria-pressed',String(lightOn));drawBulb(performance.now())});
 
-// The home lab: intentionally a self-contained demonstration.
-const scenes={
- focus:{color:'#b39afa',name:'FOCUS MODE',media:'Display ready · sound off',state:'STANDBY',log:'scene.focus → desk lighting · quiet mode'},
- cinema:{color:'#7484f7',name:'CINEMA MODE',media:'TV scene · surround ambience',state:'PLAYING',log:'scene.cinema → dim lights · TV · audio'},
- evening:{color:'#edb17a',name:'EVENING MODE',media:'Warm lights · relaxed listening',state:'AMBIENT',log:'scene.evening → warm light · gentle audio'}
-};
-let scene='focus',roomOn=true;
-function setScene(name){scene=name;const s=scenes[name];$('.home-lab').style.setProperty('--scene-color',s.color);$('.room-mode').textContent=s.name;$('#media-label').textContent=s.media;$('#media-state').textContent=s.state;$('#room-log').textContent=s.log;$$('[data-scene]').forEach(b=>{const active=b.dataset.scene===name;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active))});$('.room-tv').style.opacity=name==='evening'?.22:1;$('.speaker-ring').style.opacity=name==='focus'?.25:1;roomOn=true;setRoomLight()}
-function setRoomLight(){$('.room-display').classList.toggle('lights-off',!roomOn);$('#room-power').classList.toggle('on',roomOn);$('#room-power').setAttribute('aria-pressed',String(roomOn));if(!roomOn)$('#room-log').textContent='lights.off → ambient lighting disabled';else $('#room-log').textContent=scenes[scene].log}
-$$('[data-scene]').forEach(b=>b.addEventListener('click',()=>setScene(b.dataset.scene)));
-$('#room-power').addEventListener('click',()=>{roomOn=!roomOn;setRoomLight()});
-const delay=ms=>new Promise(resolve=>setTimeout(resolve,ms));
-$('#voice-run').addEventListener('click',async()=>{
- const b=$('#voice-run'),result=$('#voice-result');b.disabled=true;
- result.textContent='Recognized: “Hey Hina, movie time.”';
- await delay(600);result.textContent='Intent → activate the cinema scene.';
- await delay(650);setScene('cinema');result.textContent='Done. Lights dimmed, TV scene selected, audio ready. Demo complete.';b.disabled=false;
-});
-const workflows={
- commerce:[['REQUEST','Prepare a marketplace product feed.'],['FETCH','Load the sample product catalog.'],['CHECK','Validate price, stock and required fields.'],['TRANSFORM','Map product fields into marketplace XML.'],['REVIEW','Flag incomplete entries for a human.'],['DONE','Draft feed prepared. Ready for review.']],
- vision:[['REQUEST','Review a generated image set.'],['LOAD','Read the sample image batch.'],['INSPECT','Check consistency and visible artifacts.'],['RANK','Compare candidates against the brief.'],['SELECT','Prepare a shortlist for manual review.'],['DONE','Shortlist prepared. The final choice is human.']],
- home:[['REQUEST','Start an evening routine.'],['INTENT','Map the request to a home scene.'],['CHECK','Resolve the sample lights and media devices.'],['EXECUTE','Apply warm lighting and a quiet media scene.'],['VERIFY','Read the simulated state changes.'],['DONE','Evening scene ready. Demo complete.']]
-};
-let agent='commerce',agentRunning=false;
-$$('[data-agent]').forEach(b=>b.addEventListener('click',()=>{if(agentRunning)return;agent=b.dataset.agent;$$('[data-agent]').forEach(x=>{x.classList.toggle('active',x===b);x.setAttribute('aria-pressed',String(x===b))});$('#agent-output').replaceChildren();const p=document.createElement('p');p.textContent='→ '+workflows[agent][0][1];$('#agent-output').append(p);$('#agent-badge').textContent='READY'}));
-$('#agent-run').addEventListener('click',async()=>{
- if(agentRunning)return;agentRunning=true;$('#agent-run').disabled=true;$$('[data-agent]').forEach(b=>b.disabled=true);$('#agent-badge').textContent='RUNNING';const out=$('#agent-output');out.replaceChildren();
- for(let i=0;i<workflows[agent].length;i++){
-  if(i)await delay(reduced.matches?80:550);
-  const [type,message]=workflows[agent][i];const p=document.createElement('p');const index=document.createElement('span');index.className='log-time';index.textContent=String(i+1).padStart(2,'0')+' / '+type.toLowerCase();p.append(index,document.createTextNode(' '+message));if(type==='DONE')p.className='log-done';out.append(p);out.scrollTop=out.scrollHeight;
- }
- if(agent==='home')setScene('evening');$('#agent-badge').textContent='COMPLETE';$('#agent-run').disabled=false;$$('[data-agent]').forEach(b=>b.disabled=false);agentRunning=false;
-});
-
 // Pinned projects and source links.
 const projects={
  spotify:{category:'HOME ASSISTANT APP / PYTHON',title:'Routine Spotify Bridge',description:'A Home Assistant app that brings Spotify to ESPHome wall displays. Released as MIT-licensed source.',architecture:['ESPHome display','Home Assistant app','Spotify'],features:['Search Spotify from the display.','Browse the library.','Control playback.','Switch Spotify Connect devices.'],url:'https://github.com/artur-safonov/routine-spotify-bridge'},
@@ -213,7 +179,7 @@ loadContributions().then(drawContributionChart);
 
 // Useful navigation rather than a pretend terminal.
 const command=$('#command-dialog'),search=$('#command-search');
-const destinations=[['On the web','DayVolt, PawTidy and RustBoom','#web'],['Selected work','Six pinned projects','#work'],['Playground','Try the connected room and an agent','#playground'],['About / focus areas','Explore what I work on','#about'],['GitHub trajectory','Inspect the contribution timeline','#activity'],['Connect','GitHub, LinkedIn, Telegram and Hugging Face','#connect'],['Back to the light','Return to the sculpture','#top']];
+const destinations=[['On the web','DayVolt, PawTidy and RustBoom','#web'],['Selected work','Six pinned projects','#work'],['Routine Controller','Explore the measured v0.8 hardware','#playground'],['Spatial home','Early exploration of smart home control in VR','#spatial'],['GitHub trajectory','Inspect the contribution timeline','#activity'],['Connect','GitHub, LinkedIn, Telegram and Hugging Face','#connect'],['Back to the light','Return to the sculpture','#top']];
 function commandResults(){const query=search.value.toLowerCase();const dest=destinations.filter(d=>d.join(' ').toLowerCase().includes(query));$('#command-results').replaceChildren(...dest.map(([title,desc,href])=>{const b=document.createElement('button');const label=document.createElement('span');label.textContent=title;const arrow=document.createElement('span');arrow.textContent='↗';b.title=desc;b.append(label,arrow);b.addEventListener('click',()=>{command.close();const target=$(href);target.scrollIntoView({behavior:paused?'instant':'smooth'});target.setAttribute('tabindex','-1');target.focus({preventScroll:true})});return b}));if(!dest.length){const p=document.createElement('p');p.textContent='No matching section. Try “work”, “home” or “GitHub”.';$('#command-results').append(p)}}
 function openCommand(){commandResults();command.showModal();search.focus()}
 $('.command-open').addEventListener('click',openCommand);$('.command-close').addEventListener('click',()=>command.close());search.addEventListener('input',commandResults);search.addEventListener('keydown',e=>{if(e.key==='Enter')$('#command-results button')?.click()});closeOnBackdrop(command);

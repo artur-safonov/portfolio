@@ -6,14 +6,23 @@
 <title>Artur Safonov — A digital workshop</title>
 <meta name="description" content="A personal digital workshop by Artur Safonov. AI agents, connected homes, useful software, and a little curiosity.">
 <link rel="icon" href="icon.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css">
-<script src="app.js" defer></script>
+<script src="app.js?v=20261019-skip" defer></script>
+<link rel="stylesheet" href="controller.css?v=3">
+<link rel="stylesheet" href="volume.css?v=1">
+<script src="controller-film.js?v=4" defer></script>
+<script src="controller.js?v=4" defer></script>
+<link rel="stylesheet" href="spatial.css?v=2">
+<script src="vr-film.js?v=3" defer></script>
+<script src="spatial.js?v=10" defer></script>
 <link rel="stylesheet" href="site-nav.css?v=20261019">
+<link rel="stylesheet" href="photoreal.css?v=8">
+<link rel="stylesheet" href="unify.css?v=2">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a><div class="reading-progress" aria-hidden="true"></div>
 <header class="nav">
 <a class="brand" href="#top" aria-label="Artur Safonov home"><svg viewBox="0 0 24 28" aria-hidden="true"><path d="M7 20C7 15 3 15 3 9a9 9 0 0 1 18 0c0 6-4 6-4 11ZM8 24h8M10 27h4"/><path d="m9 9 3 4 3-4M12 13v7"/></svg><span>ARTUR<br>SAFONOV<span class="brand-dot">.</span></span></a>
-<nav aria-label="Main navigation"><a href="#web">On the web</a><a href="#work">Selected work</a><a href="#playground">Playground</a><a href="#about">About</a></nav>
+<nav aria-label="Main navigation"><a href="#web">On the web</a><a href="#work">Selected work</a><a href="#playground">Controller</a><a href="#spatial">Spatial home</a><a href="#activity">GitHub</a></nav>
 <button class="command-open" aria-label="Open command menu"><span>Explore</span><kbd>⌘ K</kbd></button>
 </header>
 <main id="main">
@@ -23,7 +32,7 @@
 <div class="eyebrow"><span class="status-dot"></span> DEVELOPER / AUTOMATOR / BUILDER</div>
 <h1>A little code.<br>A lot of<br><em>possibility.</em></h1>
 <p class="intro">I’m Artur. I connect software, AI and the physical world to make everyday things work a little better.</p>
-<div class="hero-actions"><a class="button primary" href="#work">Explore my work <span>↘</span></a><a class="text-link" href="#playground">Or play with the lights <span>→</span></a></div>
+<div class="hero-actions"><a class="button primary" href="#work">Explore my work <span>↘</span></a><a class="text-link" href="#playground">Inside the controller <span>→</span></a></div>
 </div>
 <div class="hero-art" id="hero-art">
 <canvas id="bulb" aria-label="Interactive rotating RGB light sculpture. Use the controls below to adjust its light." role="img"></canvas>
@@ -89,95 +98,42 @@
 <div class="project-info"><div class="project-meta"><span>COMFYUI NODES</span><span>PYTHON</span></div><h3>Characters with<br>a stable identity.</h3><p>ComfyUI nodes for character identity tags, image and caption downloads, and experimental Anima diagnostics.</p><button class="project-button" data-project="comfy">Explore Tag Tools <span>↗</span></button></div>
 </article></div>
 </section>
-<section class="section playground-section" id="playground">
-<div class="section-top reveal"><div class="eyebrow">02 / THE PLAYGROUND</div><span class="tag">INTERACTIVE CONCEPT DEMOS</span></div>
-<div class="section-heading reveal"><h2>Don’t just look.<br><em>Try something.</em></h2><p>Software gets interesting when it reaches beyond the screen.</p></div>
-<div class="home-lab reveal">
-<div class="room-display">
-<div class="room-header"><span><i class="tiny-dot"></i> THE CONNECTED ROOM</span><span class="room-mode">FOCUS MODE</span></div>
-<svg id="room" viewBox="0 0 700 490" role="img" aria-label="Isometric smart room demonstration with a desk, lamp, TV, sofa and speaker">
-<defs>
-<linearGradient id="floor" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#292939"/><stop offset="1" stop-color="#16171f"/></linearGradient>
-<linearGradient id="wall" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#282836"/><stop offset="1" stop-color="#1a1b25"/></linearGradient>
-<radialGradient id="roomglow"><stop stop-color="var(--scene-color)" stop-opacity=".55"/><stop offset="1" stop-color="var(--scene-color)" stop-opacity="0"/></radialGradient>
-<linearGradient id="tvGradient"><stop stop-color="var(--scene-color)"/><stop offset="1" stop-color="#222637"/></linearGradient>
-<filter id="roomblur"><feGaussianBlur stdDeviation="10"/></filter>
-</defs>
-<ellipse cx="350" cy="408" rx="280" ry="47" fill="#000" opacity=".3"/>
-<path d="M65 274 350 117 635 274 350 443Z" fill="url(#floor)" stroke="#454555"/>
-<path d="M65 274 65 154 350 0 350 117Z" fill="#242431" stroke="#424252"/>
-<path d="M350 0 635 156V274L350 117Z" fill="#1c1d29" stroke="#424252"/>
-<path class="room-light" d="M75 267 350 116 625 267" fill="none" stroke="var(--scene-color)" stroke-width="3"/>
-<ellipse class="room-light" cx="353" cy="271" rx="225" ry="125" fill="url(#roomglow)"/>
-<!-- wall screen -->
-<path d="M405 76 566 164V239L405 151Z" fill="#0b0d15" stroke="#666278" stroke-width="5"/>
-<path class="room-tv" d="M415 92 556 168V220L415 144Z" fill="url(#tvGradient)"/>
-<path class="room-tv" d="M417 141 450 132 475 158 503 154 554 202" fill="none" stroke="#dbd2ff" opacity=".45" stroke-width="2"/>
-<!-- desk -->
-<path d="M100 241 236 167 319 212 183 288Z" fill="#6d6262" stroke="#978080"/>
-<path d="M100 241 183 288V300L100 253Z" fill="#3f3b45"/>
-<path d="M183 288 319 212V224L183 300Z" fill="#4e454d"/>
-<path d="M112 252V325M303 226V297M189 299V361" stroke="#292a39" stroke-width="9"/>
-<path d="M183 231 235 203 239 207 187 237Z" fill="#20222d"/>
-<path d="M172 226V171L244 132V188Z" fill="#11131d" stroke="#70647e" stroke-width="4"/>
-<path class="room-light" d="M178 215V176L238 144V182Z" fill="url(#tvGradient)"/>
-<!-- chair -->
-<path d="M226 291 265 270 295 287 256 310Z" fill="#393747" stroke="#706279"/>
-<path d="M256 310 295 287V249L256 270Z" fill="#52465f" stroke="#817089"/>
-<path d="M261 308V342M249 347 273 334" stroke="#797480" stroke-width="4"/>
-<!-- rug -->
-<path d="M298 320 432 247 551 312 417 386Z" fill="#323144" stroke="#4e475a"/>
-<path d="M312 321 433 255 537 313 417 378Z" fill="none" stroke="#575064" stroke-dasharray="4 7"/>
-<!-- sofa -->
-<path d="M372 291 448 250 534 296 458 338Z" fill="#5c5469"/>
-<path d="M458 338 534 296V327L458 369Z" fill="#3b384e"/>
-<path d="M372 291 458 338V369L372 322Z" fill="#4a435c"/>
-<path d="M386 273 449 239 534 284V310L449 264 386 299Z" fill="#786983" stroke="#8c7f93"/>
-<path d="M379 283 395 292V327L379 318Z" fill="#8c7d98"/>
-<path d="M460 329 476 320V355L460 364Z" fill="#8c7d98"/>
-<!-- side table speaker -->
-<path d="M527 259 563 239 593 255 557 275Z" fill="#5e5263"/><path d="M537 265V299M582 262V290" stroke="#302b3e" stroke-width="5"/>
-<path d="M550 249V221Q565 209 574 222V250Q560 261 550 249" fill="#11151e" stroke="#605a6c"/>
-<ellipse class="speaker-ring" cx="562" cy="222" rx="10" ry="5" fill="var(--scene-color)"/>
-<!-- floor lamp -->
-<ellipse cx="340" cy="207" rx="22" ry="11" fill="#141521"/><path d="M340 205V111" stroke="#8b859b" stroke-width="4"/>
-<path d="M321 122 330 86 350 86 360 122Q340 134 321 122" fill="#d0c4e0"/>
-<ellipse class="room-light" cx="340" cy="124" rx="19" ry="9" fill="var(--scene-color)"/>
-<ellipse class="room-light" cx="340" cy="160" rx="52" ry="60" fill="url(#roomglow)" filter="url(#roomblur)"/>
-<!-- potted plant -->
-<path d="M120 310 145 324 140 350 125 343Z" fill="#66536a"/><path d="M134 323V276M134 302Q104 290 114 281Q128 280 134 302M134 291Q147 261 156 276Q157 293 134 301" fill="#648678" stroke="#648678" stroke-width="3"/>
-</svg>
-<div class="room-foot"><span class="mono" id="room-log">scene.focus → lights · display · audio</span><span>SIMULATION</span></div>
+<section class="section rc-section" id="playground" aria-labelledby="rc-heading">
+<div class="section-top"><div class="eyebrow">02 / INSIDE ROUTINE CONTROLLER</div><span class="section-tools"><span class="rc-status"><i aria-hidden="true"></i> HARDWARE STUDY · v0.8</span><a class="skip-study" href="#spatial">Skip Controller <span aria-hidden="true">↓</span></a></span></div>
+<div class="section-heading"><h2 id="rc-heading">Your home.<br><em>On <span>ESP32.</span></em></h2><p>One integrated display. A battery. A printed enclosure.<br>Scroll to see the actual build come apart.</p></div>
+<div class="rc-scroll"><div class="rc-sticky">
+<div class="rc-copy"><div class="rc-counter">01 / THE DISPLAY MODULE</div><h3>One module.<br>All the control.</h3><p class="rc-description">The 4-inch Guition unit combines the touchscreen, display and ESP32-S3. They stay together in the build, running the ESPHome interface for lights, devices and music.</p><div class="rc-detail">Guition ESP32-S3-4848S040 · 480 × 480</div><a href="https://github.com/artur-safonov/ESPHome-Guition-ESP32-S3-4848S040" target="_blank" rel="noopener">Explore the existing project ↗</a></div>
+<div class="rc-stage" role="img" aria-label="Rendered assembly based on the Routine Controller v0.8 hardware: integrated Guition touch display and ESP32, LiPo battery with BMS, printed magnetic rear lid, and wall dock.">
+<div class="rc-halo"></div><div class="rc-floor"></div>
+<div class="rc-object" aria-hidden="true">
+<div class="rc-layer rc-dock"><div class="rc-rail rc-volume rail-1"><i class="solid-back"></i><i class="solid-side solid-left"></i><i class="solid-side solid-right"></i><i class="solid-side solid-top"></i><i class="solid-side solid-bottom"></i><div class="rail-front"><i></i><i></i></div></div><div class="rc-rail rc-volume rail-2"><i class="solid-back"></i><i class="solid-side solid-left"></i><i class="solid-side solid-right"></i><i class="solid-side solid-top"></i><i class="solid-side solid-bottom"></i><div class="rail-front"><i></i><i></i></div></div></div>
+<div class="rc-layer rc-shell rc-volume"><i class="solid-back"></i><i class="solid-side solid-left"></i><i class="solid-side solid-right"></i><i class="solid-side solid-top"></i><i class="solid-side solid-bottom"></i><img src="assets/controller-lid.svg" alt="" width="896" height="896"></div>
+<div class="rc-layer rc-power rc-volume"><i class="solid-back"></i><i class="solid-side solid-left"></i><i class="solid-side solid-right"></i><i class="solid-side solid-top"></i><i class="solid-side solid-bottom"></i><img src="assets/controller-power.svg" alt="" width="896" height="896"><div class="rc-cell rc-volume"><i class="solid-back"></i><i class="solid-side solid-left"></i><i class="solid-side solid-right"></i><i class="solid-side solid-top"></i><i class="solid-side solid-bottom"></i><img src="assets/controller-cell.svg" alt=""></div><div class="rc-bms rc-volume"><i class="solid-back"></i><i class="solid-side solid-left"></i><i class="solid-side solid-right"></i><i class="solid-side solid-top"></i><i class="solid-side solid-bottom"></i><img src="assets/controller-bms.svg" alt=""></div></div>
+<div class="rc-layer rc-display rc-volume"><i class="solid-back"></i><i class="solid-side solid-left"></i><i class="solid-side solid-right"></i><i class="solid-side solid-top"></i><i class="solid-side solid-bottom"></i><div class="rc-module-board"><span>ESP32-S3</span><i></i></div><div class="rc-ui"><div class="rc-ui-top"><span>ROUTINE</span><span>09:41</span></div><h4>Your home.<br><span>At a touch.</span></h4><div class="rc-ui-grid"><div class="rc-tile on"><i>☼</i><b>Living room</b><small>LIGHTS · 72%</small></div><div class="rc-tile"><i>◉</i><b>Kitchen</b><small>LIGHTS · OFF</small></div><div class="rc-tile"><i>▤</i><b>Devices</b><small>ONE PLACE</small></div><div class="rc-tile"><i>♫</i><b>Music</b><small>SPOTIFY</small></div></div><div class="rc-ui-tabs"><b>01 LIGHTS</b><span>02 DEVICES</span><span>03 MUSIC</span></div></div></div>
+
+</div><span class="rc-label l1">01 / DISPLAY + TOUCH + ESP32</span><span class="rc-label l2">02 / LiPo + BMS</span><span class="rc-label l3">03 / PRINTED MAGNETIC LID</span><span class="rc-label l4">04 / WALL DOCK</span>
+<img class="rc-film" src="assets/rc-frames-v2/000.webp" alt="Studio render of the measured Routine Controller assembly, separating into its physical components" width="1000" height="1200">
+<div class="rc-stage-note"><b>v0.8 / 89.6 × 89.6 × 20.1 mm</b><br>Based on measured parts & enclosure CAD</div>
 </div>
-<div class="home-controls">
-<span class="eyebrow">HOME ASSISTANT / A PERSONAL OBSESSION</span><h3>A home that<br>gets the memo.</h3>
-<p>Voice, light, media and everyday routines, connected through Home Assistant. Here’s a tiny, playable version of that idea.</p>
-<div class="scene-buttons" role="group" aria-label="Room scenes"><button class="active" data-scene="focus" aria-pressed="true"><span>01</span>Focus</button><button data-scene="cinema" aria-pressed="false"><span>02</span>Cinema</button><button data-scene="evening" aria-pressed="false"><span>03</span>Evening</button></div>
-<div class="device-row"><span><b>Ambient lighting</b><small>Yeelight · RGB scene</small></span><button class="toggle on" id="room-power" aria-label="Ambient lighting" aria-pressed="true"></button></div>
-<div class="device-row"><span><b>Media scene</b><small id="media-label">Display ready · sound off</small></span><span class="device-indicator" id="media-state">STANDBY</span></div>
-<div class="voice-demo"><div class="voice-top"><span class="voice-orb"></span><b>“Hey Hina, movie time.”</b></div><button id="voice-run">Try the voice scenario <span>↗</span></button><p id="voice-result" role="status">A scripted preview of an assistant-driven routine.</p></div>
+<div class="rc-track" role="group" aria-label="Controller chapters"><button class="rc-step" aria-pressed="true" aria-label="Chapter 1: Display module">01</button><button class="rc-step" aria-pressed="false" aria-label="Chapter 2: Battery and protection">02</button><button class="rc-step" aria-pressed="false" aria-label="Chapter 3: Printed enclosure">03</button><button class="rc-step" aria-pressed="false" aria-label="Chapter 4: Magnetic dock">04</button><span class="rc-track-hint">SCROLL TO UNFOLD <span>↓</span></span></div>
 </div></div>
-<div class="agent-lab reveal">
-<div class="agent-copy"><div class="eyebrow">AI AGENTS / FROM INTENT TO ACTION</div><h3>Give the routine<br>to the machine.</h3><p>My favorite automation is the one that gives you your time back. Explore a simplified agent workflow.</p><div class="agent-presets" role="group" aria-label="Agent workflow"><button class="active" data-agent="commerce" aria-pressed="true">Product feed</button><button data-agent="vision" aria-pressed="false">Image review</button><button data-agent="home" aria-pressed="false">Home routine</button></div><button class="button primary" id="agent-run">Run demo <span>↗</span></button></div>
-<div class="terminal"><div class="terminal-top"><span><i></i><i></i><i></i></span><span>agent / sandbox</span><span id="agent-badge">IDLE</span></div><div id="agent-output" role="log" aria-live="polite"><p class="terminal-comment">// A little less repetition. A little more possibility.</p><p><span class="terminal-prompt">→</span> Select a workflow. Press run.</p><span class="caret"></span></div><div class="terminal-bottom"><span>ILLUSTRATIVE WORKFLOW</span><span>NO LIVE SERVICES CONNECTED</span></div></div>
-</div>
 </section>
-<section class="section fields-section" id="about">
-<div class="section-top reveal"><div class="eyebrow">03 / THE THREAD THAT CONNECTS IT ALL</div><span class="mono muted">Curiosity doesn’t stay in one lane.</span></div>
-<div class="fields-layout">
-<div class="fields-intro reveal"><h2>Different worlds.<br><em>Same instinct.</em></h2><p>I like finding the part that doesn’t quite work yet.<br>Then building the missing piece.</p><div class="personal-note"><span class="note-mark">“</span><p>If I do something twice,<br>the third time it’s a script.<br><strong>The fourth time it’s an agent.</strong></p></div></div>
-<div class="field-list reveal">
-<details open><summary><span>01</span>AI agents & automation <i>+</i></summary><p>MCP tools, browser automation and LLM workflows that move from a request to a useful result.</p><div class="pills"><span>Python</span><span>MCP</span><span>LLM tooling</span></div></details>
-<details><summary><span>02</span>Smart home & IoT <i>+</i></summary><p>Home Assistant, custom voice workflows, routine tracking, media scenes and local device integrations. Software with a physical effect.</p><div class="pills"><span>Home Assistant</span><span>Yeelight</span><span>SignalRGB</span></div></details>
-<details><summary><span>03</span>E-commerce systems <i>+</i></summary><p>Marketplace feeds, stock and price workflows, payment integrations and Shopify. Making the repetitive parts of running a store easier.</p><div class="pills"><span>Shopify</span><span>APIs</span><span>Product feeds</span></div></details>
-<details><summary><span>04</span>Generative AI & visuals <i>+</i></summary><p>ComfyUI pipelines, LoRA experiments, visual ranking and AI video. Connecting creative experiments to repeatable workflows.</p><div class="pills"><span>ComfyUI</span><span>Vision models</span><span>LoRA</span></div></details>
-<details><summary><span>05</span>Backend, bots & data <i>+</i></summary><p>Spring and Node.js services, Telegram bots, data collectors, serverless functions and payment webhooks.</p><div class="pills"><span>Java / Spring</span><span>Node.js</span><span>AWS Lambda</span></div></details>
-<details><summary><span>06</span>Trading & market tooling <i>+</i></summary><p>Arbitrage experiments, AI trading workflows and market data collection.</p><div class="pills"><span>Python</span><span>Market data</span><span>Automation</span></div></details>
-<details><summary><span>07</span>Real-time 3D & motion <i>+</i></summary><p>Unreal Engine cinematics and Rive animations. Exploring how code, movement and visual storytelling fit together.</p><div class="pills"><span>Unreal Engine</span><span>Rive</span><span>Cinematics</span></div></details>
+<section class="section vr-section" id="spatial" aria-labelledby="vr-heading">
+<div class="section-top"><div class="eyebrow">NEXT / SPATIAL HOME</div><span class="section-tools"><span class="vr-status"><i aria-hidden="true"></i> EARLY EXPLORATION</span><a class="skip-study" href="#activity">Skip VR <span aria-hidden="true">↓</span></a></span></div>
+<div class="vr-scroll"><div class="vr-sticky">
+<div class="vr-copy"><h2 id="vr-heading">Your home.<br><em>In <span>VR.</span></em></h2><p class="vr-intro">A headset. A controller.<br> A room you can reach into.</p><div class="vr-chapter">01 / THE IDEA</div><p class="vr-explanation">Smart-home apps hide every device behind a list of tiles. The idea is to skip the list: look at the real device and control it where it stands.</p><div class="vr-stage-label"><i></i> An idea taking shape.<span>Early research and experiments.<br> No working VR home-control system yet.</span></div></div>
+<div class="vr-experience" aria-label="Scroll-driven VR concept: a 3D headset turns its lenses towards you, the view moves through a lens into a room where the headset recognises an air conditioner, a TV and a smart kettle, and the VR controller points at the kettle.">
+<div class="vr-coordinate"><span>SPATIAL HOME / VR</span><span class="vr-mode-label">OUTSIDE THE HEADSET</span></div>
+<div class="vr-room-view"><img src="assets/vr-room-smart.webp" alt="A living room seen through the headset: an air conditioner, a wall TV and a smart kettle are recognised, and the VR controller points at the kettle." width="1086" height="1448"><div class="vr-detect" data-box="427,130,978,357" style="--d:0"><span>Air conditioner <b>98%</b></span></div><div class="vr-detect" data-box="412,410,1022,778" style="--d:1"><span>TV <b>96%</b></span></div><div class="vr-detect is-target" data-box="303,742,412,870" style="--d:2"><span>Smart kettle <b>99%</b></span></div><span class="vr-ac-readout" aria-hidden="true">22°</span><svg class="vr-pointing-ray" viewBox="0 0 1100 760" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="ray"><stop stop-color="#b1ffe4" stop-opacity=".05"/><stop offset="1" stop-color="#b1ffe4" stop-opacity=".8"/></linearGradient></defs><path d="M925 630 754 243" stroke="url(#ray)" stroke-width="2" stroke-dasharray="4 7"/><circle cx="754" cy="243" r="15" fill="none" stroke="#a9ffe0" stroke-opacity=".5"/><circle cx="754" cy="243" r="5" fill="#c4ffe9"/></svg></div>
+<img class="vr-hmd-film" src="assets/vr-hmd-frames/000.webp" alt="3D render of a Meta Quest 3 headset turning its lenses towards you; the room appears through the left lens as the view moves closer." width="1400" height="1000">
+<img class="vr-controller" src="assets/vr-controller.svg" alt="A VR motion controller aimed at the air conditioner" width="290" height="520">
+<div class="vr-ac-panel"><div class="quest-window-head"><span>Spatial Home</span><span aria-hidden="true">··· &nbsp; ×</span></div><div class="vr-card-head"><span class="vr-device-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 8h9l1 11H6Z"/><path d="M16 10h1.5a2.5 2.5 0 0 1 0 5H16.6"/><path d="M8.5 8 9 5h5l.5 3"/><path d="M5 21h14"/></svg></span><span><b>Smart kettle</b><small>LIVING ROOM · CONCEPT</small></span></div><div class="vr-temperature"><output id="vr-temp-value" for="vr-temperature" aria-live="polite">80<span>°C</span></output><span>HEATING</span></div><label class="vr-temperature-label" for="vr-temperature">Water temperature</label><input id="vr-temperature" type="range" min="40" max="100" value="80" step="5" aria-describedby="vr-temp-note"><div class="vr-temperature-ends"><span>40°</span><span>100°</span></div><p id="vr-temp-note">Interactive concept · no device connected</p></div><div class="quest-system-dock" aria-hidden="true"><span class="quest-avatar">A</span><span class="quest-active-app"><svg viewBox="0 0 24 24"><path d="M3 10 12 3 21 10v10H3Z M9 20v-7h6v7"/></svg></span><i></i><span class="quest-app-grid"><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b></span><span><svg viewBox="0 0 24 24"><circle cx="9" cy="7" r="3"/><path d="M3 21v-4a6 6 0 0 1 12 0v4 M16 4a3 3 0 0 1 0 6 M18 14a5 5 0 0 1 3 5"/></svg></span><i></i><span><svg viewBox="0 0 24 24"><path d="M3 6h18 M3 12h18 M3 18h18"/><circle cx="8" cy="6" r="2" fill="#272727"/><circle cx="16" cy="12" r="2" fill="#272727"/><circle cx="10" cy="18" r="2" fill="#272727"/></svg></span><span><svg viewBox="0 0 24 24"><path d="M5 17h14l-2-4V8a5 5 0 0 0-10 0v5Z M10 21h4"/></svg></span><small>09:41 &nbsp; 79%</small></div><div class="vr-visual-caption"><span class="vr-scroll-hint">SCROLL TO PUT IT ON ↓</span><a class="vr-model-credit" href="https://sketchfab.com/3d-models/oculus-quest-3-f4b794fc21784cd2a78392af05e0b597" target="_blank" rel="noopener noreferrer">Quest 3 model by AVILOV · CC BY 4.0</a></div>
+</div>
+<div class="vr-chapters" role="group" aria-label="VR experience chapters"><button data-vr-step="0" aria-pressed="true">01 <span>The headset</span></button><button data-vr-step="1" aria-pressed="false">02 <span>Step inside</span></button><button data-vr-step="2" aria-pressed="false">03 <span>Point & adjust</span></button></div>
 </div></div>
 </section>
 <section class="section activity-section" id="activity">
-<div class="section-top reveal"><div class="eyebrow">04 / STILL BUILDING</div><span class="tag">GITHUB SNAPSHOT · OCT 14, 2026</span></div>
+<div class="section-top reveal"><div class="eyebrow">03 / STILL BUILDING</div><span class="tag">GITHUB SNAPSHOT · OCT 14, 2026</span></div>
 <div class="activity-layout reveal"><div class="activity-copy"><h2>Small commits.<br><em>Long trajectory.</em></h2><p>Every point is a year of showing up.<br>Scrub through the journey.</p><div class="stats-pair"><div><strong>535</strong><span>Commits counted¹</span></div><div><strong>53</strong><span>Pull requests</span></div><div><strong>707</strong><span>Contributions</span></div><div><strong>51</strong><span>Repositories owned</span></div></div></div>
 <div class="chart-panel"><div class="chart-meta"><span>CONTRIBUTIONS / YEAR</span><div><strong id="year-value">343</strong><span id="year-label">2026</span></div></div><svg id="history-chart" viewBox="0 0 650 310" role="group" aria-label="Contributions by year"></svg><div class="timeline-control"><button id="replay" aria-label="Replay contribution journey">↗</button><label for="timeline" class="sr-only">Contribution year</label><input id="timeline" type="range" min="0" max="9" value="9" step="1"><span id="timeline-year" class="mono">2026</span></div></div></div>
 <div class="stats-note">¹ Commits attributed to this GitHub account on accessible default branches. Snapshot includes public and private activity; it is not a live or exhaustive all-branch count.</div>

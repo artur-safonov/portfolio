@@ -1,0 +1,71 @@
+/* Physical renders replace the earlier CSS solids and SVG illustrations. */
+.rc-object,.rc-label,.rc-floor{display:none}
+.rc-film{position:absolute;inset:0 0 70px;width:100%;height:calc(100% - 70px);object-fit:contain;filter:drop-shadow(0 25px 35px #0004)}
+.vr-experience{background:radial-gradient(ellipse at 50% 40%,#333b40,#10141a 70%);border-color:#ffffff20}
+.vr-headset{width:100%;max-width:none!important;aspect-ratio:3/2;top:45%!important;transform:translate(-50%,-50%) scale(var(--headset-scale));filter:drop-shadow(0 28px 28px #0005)}
+.hmd-object{transform:none;perspective:none}
+.hmd-object>div{display:none}
+.hmd-front,.hmd-back{object-fit:contain;transform:none;backface-visibility:visible}
+.hmd-front{opacity:calc(1 - var(--lens-reveal,0));transform:rotate(calc(var(--lens-reveal,0)*-6deg))}
+.hmd-back{opacity:var(--lens-reveal,0)}
+.vr-controller,.vr-ac-readout{display:none}
+.vr-room-view>img{object-position:50% center}
+.vr-pointing-ray{opacity:var(--pov);filter:drop-shadow(0 0 5px #71dfbb)}
+.vr-lens-mask{border-width:14px;border-top-width:22px;border-bottom-width:30px;border-radius:20% / 15%;box-shadow:inset 0 0 35px 5px #0008;opacity:calc(var(--pov)*.45)}
+.vr-ac-panel{top:42%;left:7%;width:230px;background:#102b2ddd;backdrop-filter:blur(25px);transform:none;box-shadow:0 15px 45px #0004}
+.vr-coordinate,.vr-visual-caption{color:#e1e9e6;text-shadow:0 1px 6px #000}
+.vr-coordinate span:last-child,.vr-visual-caption>span:last-child{color:#c5d2cc}
+.vr-visual-caption{padding:10px 12px;margin:-10px -12px;background:#10181a99;border-radius:8px;backdrop-filter:blur(8px)}
+@media(max-width:760px){.rc-film{inset:0 0 28px;height:calc(100% - 28px)}.vr-headset{width:105%}.vr-ac-panel{top:36%;left:6%;width:168px;padding:11px}.vr-temperature output{font-size:37px}.vr-experience{min-height:390px}.vr-lens-mask{border-width:8px}}
+
+/* The active callout follows projected CAD bounds, including the actual image letterbox. */
+.rc-part-focus{position:absolute;border:1px solid #d3c2ff9c;border-radius:12px;box-shadow:0 0 22px #bca4ff17,inset 0 0 18px #bca4ff0c;pointer-events:none;opacity:0}
+.rc-part-focus.is-ready{opacity:1}
+.rc-part-focus>span{position:absolute;left:0;top:-27px;white-space:nowrap;border:1px solid #c8b4ff69;border-radius:7px;background:#171420ed;color:#e3d7ff;padding:7px 9px;font:8px/1 var(--mono);letter-spacing:.04em}
+.rc-film{left:-40px;right:auto;width:calc(100% + 80px)}
+.vr-experience{height:min(600px,calc(100svh - 200px));max-height:600px}
+.vr-room-view>img{object-position:50% 10%}
+.vr-ac-panel{top:26%}
+@media(max-width:760px){.vr-experience{height:auto;max-height:none}.vr-ac-panel{top:15%}.quest-system-dock{bottom:44px}}
+/* Horizon OS reference: neutral panels, pill controls, blue interaction accent and a detached control bar. */
+.vr-ac-panel{background:#262626f5;border:1px solid #ffffff18;border-radius:24px;padding:18px 19px 17px;box-shadow:0 10px 30px #0004;backdrop-filter:blur(18px);color:#dadada;top:39%;width:250px}
+.vr-ac-panel:after{content:'';position:absolute;left:37%;right:37%;height:5px;bottom:-17px;background:#dadada;border-radius:8px;box-shadow:0 1px 10px #0008}
+.quest-window-head{display:flex;align-items:center;justify-content:space-between;color:#d1d1d1;font:11px var(--sans);padding:0 0 14px;margin-bottom:15px;border-bottom:1px solid #ffffff15}
+.quest-window-head>span:last-child{font-size:16px;letter-spacing:2px;color:#c8c8c8}
+.vr-device-icon{background:#1778f1;border:0;border-radius:12px;color:#fff;width:36px;height:36px;font-size:22px}
+.vr-card-head{gap:10px}.vr-card-head b{color:#dadada;font:500 14px var(--sans)}.vr-card-head small{color:#a8a8a8;font:8px var(--sans);letter-spacing:.03em;margin-top:5px}
+.vr-temperature{margin-top:22px}.vr-temperature output{color:#dadada;font:400 52px/1 var(--sans);letter-spacing:-.04em}.vr-temperature output>span{color:#b0b0b0;font-size:23px}.vr-temperature>span{color:#a6a6a6;font:8px var(--sans)}
+.vr-temperature-label{color:#c4c4c4;font:11px var(--sans);margin-top:19px}.vr-temperature-ends{color:#aaa;font:9px var(--sans)}
+.vr-ac-panel input{--accent:#338aff;accent-color:#338aff;height:32px;min-height:32px}
+.vr-ac-panel input::-webkit-slider-thumb{background:#dadada!important;box-shadow:0 0 0 4px #338aff25!important}
+.vr-ac-panel p{font:8px/1.6 var(--sans);color:#a4a4a4;border-color:#ffffff15;margin-top:16px;padding-top:12px}
+.quest-system-dock{position:absolute;left:50%;bottom:64px;transform:translateX(-50%);z-index:10;display:flex;align-items:center;gap:15px;padding:11px 15px;background:#272727e8;backdrop-filter:blur(20px);border:1px solid #ffffff15;border-radius:40px;box-shadow:0 7px 20px #0004;color:#dadada;opacity:var(--pov);pointer-events:none}
+.quest-system-dock>span{display:grid;place-items:center;width:22px;height:24px}.quest-system-dock svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.quest-system-dock>i{width:1px;height:18px;background:#ffffff25}.quest-system-dock .quest-avatar{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#e7c28f,#9c81b4);font:500 12px var(--sans);color:#262626}.quest-system-dock .quest-active-app{width:30px;height:30px;border-radius:9px;background:#3a76c2;color:#fff}.quest-system-dock .quest-app-grid{display:grid;grid-template-columns:repeat(3,4px);grid-template-rows:repeat(3,4px);gap:2px;width:29px;height:29px;border-radius:50%;background:#dadada}.quest-app-grid b{width:4px;height:4px;background:#9771df;border-radius:1px}.quest-system-dock small{position:absolute;top:-23px;left:0;right:0;text-align:center;font:9px var(--sans);color:#dadada;text-shadow:0 1px 5px #000}
+.vr-ac-panel{top:21%}
+@media(max-width:760px){.vr-ac-panel{top:27%;padding:10px}.quest-window-head{margin-bottom:8px;padding-bottom:8px}.vr-temperature-label{margin-top:10px}.vr-ac-panel p{display:none}.quest-system-dock{bottom:44px}}
+
+/* 3D headset sequence: lens windows are transparent and reveal the room layer underneath. */
+.vr-experience{background:#0c0f14}
+.vr-hmd-film{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:5;opacity:var(--film-opacity,1);pointer-events:none}
+.vr-room-view>img{transform:scale(var(--room-zoom,1));transform-origin:50% 30%}
+.vr-model-credit{color:#c5d2cc;font:inherit;letter-spacing:inherit;text-decoration:none;pointer-events:auto}.vr-model-credit:hover{color:#fff;text-decoration:underline}
+/* Object recognition overlay and smart-kettle target. */
+.vr-room-view>img{transform:none}
+.vr-detect{position:absolute;z-index:3;border:1.5px solid #ffffffb8;border-radius:6px;box-shadow:0 0 0 1px #0002,inset 0 0 0 1px #0001;opacity:calc(var(--pov) * 1);transform:scale(calc(1.06 - .06*var(--pov)));transition:opacity .35s calc(var(--d)*.12s),transform .35s calc(var(--d)*.12s);pointer-events:none}
+.vr-detect>span{position:absolute;left:-1.5px;bottom:100%;margin-bottom:5px;white-space:nowrap;padding:4px 8px;border-radius:6px;background:#262626e6;backdrop-filter:blur(10px);color:#e9e9e9;font:500 10px/1.2 var(--sans)}
+.vr-detect>span b{font-weight:400;color:#a9a9a9;margin-left:5px}
+.vr-detect.is-target{border-color:#338aff;box-shadow:0 0 0 3px #338aff33,0 0 22px #338aff55}
+.vr-detect.is-target>span{background:#338aff;color:#fff}.vr-detect.is-target>span b{color:#dbe9ff}
+.vr-ac-panel{top:auto;width:230px}
+.vr-device-icon svg{display:block}
+.quest-system-dock .quest-app-grid{place-content:center;justify-content:center;align-content:center}
+@media(max-width:760px){.vr-detect>span{font-size:8px;padding:3px 6px}.vr-ac-panel{width:170px}}
+.vr-detect.label-inside>span{bottom:auto;top:6px;left:6px;margin:0}
+.is-inside .vr-coordinate{opacity:0}
+.vr-ac-panel{width:214px;padding:14px 16px 14px}
+.vr-ac-panel p{display:none}
+.vr-ac-panel .quest-window-head{padding-bottom:10px;margin-bottom:11px}
+.vr-ac-panel .vr-temperature{margin-top:13px}.vr-ac-panel .vr-temperature output{font-size:42px}.vr-ac-panel .vr-temperature output>span{font-size:19px}
+.vr-ac-panel .vr-temperature-label{margin-top:12px}
+@media(max-width:760px){.vr-ac-panel{width:165px;padding:10px 11px}.vr-ac-panel .vr-temperature output{font-size:32px}}

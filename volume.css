@@ -1,0 +1,32 @@
+/* Real side and rear faces share the part's transform, rather than painted shadows. */
+.rc-volume{--depth:16px;--solid:#96968c;--side:#6f726d;transform-style:preserve-3d}
+.solid-back,.solid-side{position:absolute;display:block;pointer-events:none;box-sizing:border-box;backface-visibility:visible}
+.solid-back{inset:0;transform:translateZ(calc(-1*var(--depth)));background:var(--solid);border:1px solid #ffffff26;border-radius:inherit}
+.solid-side{background:linear-gradient(90deg,#ffffff12,transparent 50%,#0004),var(--side);border:1px solid #ffffff20}
+.solid-left,.solid-right{width:var(--depth);height:100%;top:0;transform-origin:left center;transform:rotateY(90deg)}
+.solid-left{left:0}.solid-right{left:100%}
+.solid-top,.solid-bottom{width:100%;height:var(--depth);left:0;transform-origin:center top;transform:rotateX(-90deg)}
+.solid-top{top:0}.solid-bottom{top:100%}
+.rc-display{--depth:calc(var(--device-size)*.112);--solid:#949995;--side:#9a9e9e;box-shadow:none}
+.rc-display>.solid-bottom{background:linear-gradient(#bfc4c3 0 20%,#777e7f 20% 27%,#9ca3a2 27% 76%,#60696b 76% 80%,#b6bab5 80%)}
+.rc-display>.solid-right{background:linear-gradient(90deg,#c4c8c5,#606968 25%,#909994 35%,#a6aba3 90%,#525a54)}
+.rc-shell{--depth:calc(var(--device-size)*.031);--solid:#b0ab9c;--side:#aaa796;box-shadow:none}
+.rc-shell>.solid-side{background:repeating-linear-gradient(0deg,#b0aa9a 0 1px,#989383 1px 2px)}
+.rc-power{--depth:calc(var(--device-size)*.012);--solid:#575e61;--side:#959a99;box-shadow:none}
+.rc-cell,.rc-bms{position:absolute;transform:translateZ(var(--rise));transform-style:preserve-3d}
+.rc-cell{left:10.15%;top:9.38%;width:57.92%;height:78.9%;--rise:calc(var(--device-size)*.056);--depth:var(--rise);--side:#c9ae3b;--solid:#b2b4a6;border-radius:3px}
+.rc-bms{left:74.89%;top:10.6%;width:18.97%;height:33.48%;--rise:calc(var(--device-size)*.045);--depth:var(--rise);--side:#143a2d;--solid:#275845;border-radius:1px}
+.rc-cell>img,.rc-bms>img{display:block;width:100%;height:100%;position:relative;transform:translateZ(.2px)}
+.rc-cell>.solid-side{background:linear-gradient(90deg,#aa8520,#e4c85c 30%,#b9972b 70%,#9b7614)}
+.rc-bms>.solid-right{background:linear-gradient(#10261d 0 20%,#4d5d45 20% 32%,#142a21 32% 68%,#60735c 68% 78%,#173529 78%)}
+.rc-dock{box-shadow:none}
+.rc-rail{position:absolute;left:5.35%;width:89.3%;height:18.4%;border-radius:8px;--depth:calc(var(--device-size)*.036);--side:#939184;--solid:#b6b3a6}
+.rail-1{top:6.9%}.rail-2{top:74.7%}
+.rail-front{position:absolute;inset:0;border-radius:8px;background:repeating-linear-gradient(0deg,#bfbbae 0 1px,#b5b1a4 1px 2px);border:1px solid #dbd8cc;box-shadow:inset 0 2px #e2dfd4,inset 0 -4px #777a6e}
+.rail-front>i{position:absolute;top:23%;width:12%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,#272f2e 0 21%,#646e68 22% 27%,#cbd2c8 28% 32%,transparent 33%),conic-gradient(#d3d8cf,#8f9992,#e0e6dc,#929e96,#d3d8cf);box-shadow:0 1px 2px #0008,inset 0 0 0 1px #87938c}
+.rail-front>i:first-child{left:19%}.rail-front>i:last-child{right:19%}
+/* Keep the measured-parts caption in a dedicated corner clear of both dock and navigation. */
+@media(min-width:761px){.rc-stage-note{left:auto;right:0;bottom:28px;max-width:205px;text-align:right;padding:9px 0 9px 16px;border-left:1px solid #bca4ff30;background:linear-gradient(90deg,#10111700,#101117cc);z-index:4}}
+@media(max-width:760px){.rc-rail,.rail-front{border-radius:4px}}
+.rc-display{--z:calc(var(--device-size)*.19)}
+.rc-power{--z:0px}.rc-shell{--z:calc(var(--device-size)*-.04)}.rc-dock{--z:calc(var(--device-size)*-.1)}

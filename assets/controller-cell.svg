@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="91 84 519 707">
+<defs><linearGradient id="tray" x2="1" y2="1"><stop stop-color="#898d91"/><stop offset=".5" stop-color="#50585f"/><stop offset="1" stop-color="#72777d"/></linearGradient><linearGradient id="foil" x2="1" y2=".7"><stop stop-color="#d4d6d3"/><stop offset=".25" stop-color="#aeb4b3"/><stop offset=".52" stop-color="#e7e8e1"/><stop offset=".8" stop-color="#b1b8b5"/><stop offset="1" stop-color="#d0d2cb"/></linearGradient><linearGradient id="tape"><stop stop-color="#ad7d13"/><stop offset=".4" stop-color="#eec338"/><stop offset="1" stop-color="#94700e"/></linearGradient><pattern id="print" width="4" height="4" patternUnits="userSpaceOnUse"><path d="M0 1h4" stroke="#ffffff" stroke-opacity=".07"/></pattern></defs>
+<!-- Layout based on the measured v0.8 rear tray: 52x70 mm cell and 17x30 mm BMS. -->
+<path d="M58 34H838Q862 34 862 58V838Q862 862 838 862H58Q34 862 34 838V58Q34 34 58 34Z" fill="url(#tray)" stroke="#9ba0a4" stroke-width="3"/>
+<path d="M94 88H585V817H91Z" fill="#333a3f" stroke="#a9a9a0" stroke-width="9"/>
+<rect x="91" y="84" width="519" height="707" rx="18" fill="url(#tape)" stroke="#9b7a1c" stroke-width="4"/><path d="M110 103H587V771H110Z" fill="url(#foil)" stroke="#e5e3cf" stroke-width="2"/>
+<path d="M123 122Q186 111 222 123M565 110Q578 320 565 480M126 748Q240 763 312 753" fill="none" stroke="#f0f0dd" stroke-opacity=".3" stroke-width="3"/>
+<g fill="#656e68" font-family="monospace" transform="translate(290 300) rotate(90)"><text font-size="25">LiPo 505573</text><text y="38" font-size="21">3.7 V · 3000 mAh</text><text y="88" font-size="17">+                      −</text></g>
+<path d="M150 84V52H197V84M480 84V52H527V84" fill="#c5bb99" stroke="#9f946e" stroke-width="3"/>
+<rect x="671" y="95" width="170" height="300" rx="3" fill="#17654c" stroke="#8ca78d" stroke-width="3"/>
+<g fill="#b4c9a6" font-family="monospace" font-size="16"><text x="680" y="118">HXYP 1S</text><text x="683" y="381">P−  B+ P+</text><text x="810" y="143">B−</text></g>
+<g fill="#c2baa0" stroke="#e0d9b4" stroke-width="2"><rect x="687" y="135" width="22" height="24"/><rect x="806" y="135" width="22" height="24"/><rect x="687" y="349" width="22" height="24"/><rect x="743" y="349" width="22" height="24"/><rect x="800" y="349" width="22" height="24"/></g>
+<g fill="#151b19" stroke="#65756a" stroke-width="2"><rect x="697" y="175" width="122" height="75"/><rect x="697" y="269" width="122" height="60"/></g><g stroke="#c6c1a3" stroke-width="5"><path d="M705 165v10m20-10v10m20-10v10m20-10v10m20-10v10m20-10v10M705 250v10m20-10v10m20-10v10m20-10v10m20-10v10m20-10v10"/></g>
+<path d="M174 55V29H635V420H754V368" fill="none" stroke="#8c2b28" stroke-width="17" stroke-linecap="round"/><path d="M500 55V17H818V146" fill="none" stroke="#171a1d" stroke-width="17" stroke-linecap="round"/>
+<path d="M697 365V445H788V606" fill="none" stroke="#141a1d" stroke-width="8"/><path d="M811 365V434H812V607" fill="none" stroke="#be4e3b" stroke-width="8"/>
+<rect x="755" y="586" width="87" height="57" rx="5" fill="#e5dfcb" stroke="#9c9c90" stroke-width="3"/><path d="M775 595v33m22-33v33m22-33v33" stroke="#8c8d7d" stroke-width="5"/>
+<rect x="659" y="538" width="59" height="150" rx="3" fill="#131a20" stroke="#7b8180" stroke-width="3"/><g fill="#b9b291"><circle cx="672" cy="558" r="5"/><circle cx="701" cy="558" r="5"/><circle cx="672" cy="593" r="5"/><circle cx="701" cy="593" r="5"/><circle cx="672" cy="628" r="5"/><circle cx="701" cy="628" r="5"/><circle cx="672" cy="663" r="5"/><circle cx="701" cy="663" r="5"/></g>
+<path d="M58 34H838Q862 34 862 58V838Q862 862 838 862H58Q34 862 34 838V58Q34 34 58 34Z" fill="url(#print)"/>
+<g fill="#333b40" stroke="#a8aaa2" stroke-width="3"><circle cx="65" cy="65" r="14"/><circle cx="830" cy="65" r="14"/><circle cx="65" cy="830" r="14"/><circle cx="830" cy="830" r="14"/></g>
+</svg>

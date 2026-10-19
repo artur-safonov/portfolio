@@ -1,0 +1,11 @@
+Model Information:
+* title:	Oculus Quest 3
+* source:	https://sketchfab.com/3d-models/oculus-quest-3-f4b794fc21784cd2a78392af05e0b597
+* author:	AVILOV (https://sketchfab.com/avilov)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Oculus Quest 3" (https://sketchfab.com/3d-models/oculus-quest-3-f4b794fc21784cd2a78392af05e0b597) by AVILOV (https://sketchfab.com/avilov) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

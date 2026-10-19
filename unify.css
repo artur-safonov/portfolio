@@ -1,0 +1,20 @@
+/* One palette for the whole page: VR copy and controls follow the portfolio's violet accent. */
+.vr-section{background:radial-gradient(ellipse at 72% 48%,#7068a012,transparent 60%)}
+.vr-status{border-color:#e8c59040;color:#e8c590;font-size:10px;letter-spacing:.07em}.vr-status i{border:0;background:currentColor}
+.vr-copy h2 em{color:var(--accent)}
+.vr-intro{color:var(--text)}
+.vr-chapter{color:var(--accent);font-size:10px;letter-spacing:.12em}
+.vr-explanation{color:#b1adbf;font-size:14px;line-height:1.85;max-width:325px}
+.vr-stage-label{color:#cdc2eb;border-left:1px solid #bca4ff70;padding-left:14px}.vr-stage-label>i{display:none}.vr-stage-label span{color:#8f879f}
+.vr-chapters button{border-color:#ffffff20;background:transparent;color:#8f879f}
+.vr-chapters button[aria-pressed=true]{border-color:#bca4ff88;background:#bca4ff1c;color:#e2d3ff}
+.vr-chapters button:hover{border-color:#bca4ff88}
+.vr-experience{border-color:#ffffff1f}
+/* Skip the two long scroll studies. */
+.section-tools{display:inline-flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+.skip-study{display:inline-flex;align-items:center;gap:8px;min-height:36px;padding:8px 14px;border:1px solid #bca4ff55;border-radius:99px;color:#e2d3ff;background:#bca4ff12;font:10px var(--mono);letter-spacing:.07em;text-transform:uppercase;transition:background .2s,border-color .2s}
+.skip-study:hover,.skip-study:focus-visible{background:#bca4ff26;border-color:#bca4ffaa}
+@media(max-width:760px){.vr-chapter{font-size:8px}.vr-explanation{font-size:12px;line-height:1.7}.skip-study{font-size:8px;min-height:32px;padding:6px 11px}.section-tools{justify-content:flex-start}}
+
+/* Controller heading mirrors the VR heading: one oversized accent word. */
+.rc-section .section-heading h2 em>span{font-size:1.65em;line-height:.95;letter-spacing:-.07em}
