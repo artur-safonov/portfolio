@@ -175,7 +175,16 @@ function drawContributionChart(series){
     replayFrame=requestAnimationFrame(tick);
   };
 }
-loadContributions().then(drawContributionChart);
+function showSummary(data){
+  const set=(id,value)=>{const el=document.getElementById(id);if(el&&Number.isFinite(value))el.textContent=value.toLocaleString('en-US')};
+  const s=data.summary;
+  if(s){set('stat-commits',s.commits);set('stat-prs',s.pullRequests);set('stat-repos',s.repositories)}
+  set('stat-total',data.values.reduce((a,b)=>a+b,0));
+  const date=new Date(data.generatedAt+'T00:00:00Z');
+  const tag=document.getElementById('stats-date');
+  if(tag&&!isNaN(date))tag.textContent='GITHUB SNAPSHOT · '+date.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric',timeZone:'UTC'}).toUpperCase();
+}
+loadContributions().then(data=>{drawContributionChart(data);if(data.generatedAt&&data.summary)showSummary(data)});
 
 // Useful navigation rather than a pretend terminal.
 const command=$('#command-dialog'),search=$('#command-search');

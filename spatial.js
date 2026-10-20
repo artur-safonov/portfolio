@@ -6,7 +6,7 @@
  const chapters=[
   ['01 / THE IDEA','Smart-home apps hide every device behind a list of tiles. The idea is to skip the list: look at the real device and control it where it stands.'],
   ['02 / PASSTHROUGH','Quest 3 shows your real room through its cameras, in colour. That live view becomes the interface: controls can sit next to an appliance instead of inside a menu.'],
-  ['03 / RECOGNISE & CONTROL','The plan: the headset recognises the AC, the TV and the kettle and links each one to its device in Home Assistant. Point at the kettle, and its controls open beside it. The slider here is a concept; nothing is connected.']
+  ['03 / RECOGNISE & CONTROL','The plan: the headset recognises the AC, the TV and the kettle and links each one to its device in Home Assistant. Point at the kettle, and its controls open beside it.']
  ];
  const clamp=n=>Math.max(0,Math.min(1,n)),smooth=n=>{n=clamp(n);return n*n*(3-2*n)};
  let pending=false,manual=0,active=-1;
