@@ -17,6 +17,8 @@
 <link rel="stylesheet" href="site-nav.css?v=20261019">
 <link rel="stylesheet" href="photoreal.css?v=8">
 <link rel="stylesheet" href="unify.css?v=2">
+<link rel="stylesheet" href="section-rail.css?v=1">
+<script src="section-rail.js?v=1" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a><div class="reading-progress" aria-hidden="true"></div>
@@ -53,7 +55,7 @@
 </section>
 <div class="ticker" aria-hidden="true"><div>THINK IT. <span>BUILD IT.</span> CONNECT IT. <span>MAKE IT USEFUL.</span> THINK IT. <span>BUILD IT.</span> CONNECT IT. <span>MAKE IT USEFUL.</span></div></div>
 <section class="section web-section" id="web">
-<div class="section-top reveal"><div class="eyebrow">LIVE / ON THE WEB</div><span class="mono muted">A few things with an address.</span></div>
+<div class="section-top reveal"><div class="eyebrow">01 / ON THE WEB</div><span class="mono muted">A few things with an address.</span></div>
 <div class="section-heading reveal"><h2>Beyond the code.<br><em>Out in the world.</em></h2><p>Storefronts, small brands and player tools.<br>Pick a door. Take a look around.</p></div>
 <div class="web-grid"><a class="web-card web-dayvolt reveal" href="https://artursafonov.store/dayvolt/" target="_blank" rel="noopener" aria-label="Visit DayVolt (opens in a new tab)" style="--web-accent:#d0f268">
 <div class="web-art" aria-hidden="true"><span class="web-index">01 / MARKETPLACE HUB</span><img src="assets/web-dayvolt.svg" alt="" width="360" height="240" loading="lazy"><span class="web-art-cross">+</span></div>
@@ -70,36 +72,40 @@
 </div>
 </section>
 <section class="section work-section" id="work">
-<div class="section-top reveal"><div class="eyebrow">01 / SELECTED WORK</div><span class="muted mono">A small window into what I build.</span></div>
+<div class="section-top reveal"><div class="eyebrow">02 / SELECTED WORK</div><span class="muted mono">A small window into what I build.</span></div>
 <div class="section-heading reveal"><h2>From “what if”<br>to <em>“it works.”</em></h2><p>Six pinned projects. One idea:<br>software you can feel in the room.</p></div>
 <div class="projects">
 <article class="project-card reveal">
-<div class="project-art spotify-art" aria-hidden="true"><div class="art-grid"></div><div class="esp-screen"><div class="cover"></div><b>Now playing</b><small>Spotify Connect</small><div class="track"><i></i></div><div class="controls"><i></i><i class="play"></i><i></i></div></div><div class="eq"><i></i><i></i><i></i><i></i><i></i></div><span class="art-label">DISPLAY → HOME ASSISTANT → SPOTIFY</span><span class="art-index">01</span></div>
+<div class="project-art enclosure-art" aria-hidden="true"><div class="art-grid"></div><div class="enc-stack"><i class="enc-dock"></i><i class="enc-lid"></i><i class="enc-tray"><b></b></i><i class="enc-front"><b></b></i></div><span class="enc-dim">89.6 × 89.6 × 20.1 MM</span><span class="art-label">PRINTED CASE. MAGNETIC DOCK.</span><span class="art-index">01</span></div>
+<div class="project-info"><div class="project-meta"><span>3D-PRINTED ENCLOSURE · CAD</span><span>PYTHON</span></div><h3>A battery case<br>that hangs on the wall.</h3><p>Parametric enclosure for the Guition ESP32-S3-4848S040 4-inch display, with a built-in LiPo and a magnetic wall dock.</p><button class="project-button" data-project="enclosure">Explore the enclosure <span>↗</span></button></div>
+</article>
+<article class="project-card reveal">
+<div class="project-art spotify-art" aria-hidden="true"><div class="art-grid"></div><div class="esp-screen"><div class="cover"></div><b>Now playing</b><small>Spotify Connect</small><div class="track"><i></i></div><div class="controls"><i></i><i class="play"></i><i></i></div></div><div class="eq"><i></i><i></i><i></i><i></i><i></i></div><span class="art-label">DISPLAY → HOME ASSISTANT → SPOTIFY</span><span class="art-index">02</span></div>
 <div class="project-info"><div class="project-meta"><span>HOME ASSISTANT APP</span><span>PYTHON</span></div><h3>Music control,<br>right on the wall.</h3><p>Search Spotify, browse the library and control playback and Connect devices from ESPHome displays.</p><button class="project-button" data-project="spotify">Explore Spotify Bridge <span>↗</span></button></div>
 </article>
+
 <article class="project-card reveal">
-<div class="project-art esp-art" aria-hidden="true"><div class="art-grid"></div><div class="panel"><div class="tabs"><span class="on">Lights</span><span>Devices</span><span>Music</span></div><div class="tiles"><i class="lit"></i><i></i><i class="lit"></i><i></i><i class="lit"></i><i></i></div></div><span class="art-label">ONE YAML FILE. THREE PAGES.</span><span class="art-index">02</span></div>
+<div class="project-art esp-art" aria-hidden="true"><div class="art-grid"></div><div class="panel"><div class="tabs"><span class="on">Lights</span><span>Devices</span><span>Music</span></div><div class="tiles"><i class="lit"></i><i></i><i class="lit"></i><i></i><i class="lit"></i><i></i></div></div><span class="art-label">ONE YAML FILE. THREE PAGES.</span><span class="art-index">03</span></div>
 <div class="project-info"><div class="project-meta"><span>ESPHOME DISPLAY · FORK</span><span>C++</span></div><h3>A control panel<br>that lives on the wall.</h3><p>Routine Controller UI for the Guition ESP32-S3-4848S040: lights, devices and music pages configured from one YAML file.</p><button class="project-button" data-project="esp">Explore the display <span>↗</span></button></div>
 </article>
+
 <article class="project-card reveal">
-<div class="project-art bridge-art" aria-hidden="true"><div class="art-grid"></div><div class="monitor"><div class="monitor-screen"><div class="rgb-wave"></div><div class="code-lines"><i></i><i></i><i></i><i></i></div></div><div class="monitor-neck"></div><div class="monitor-foot"></div></div><div class="signal-dots"><i></i><i></i><i></i><i></i><i></i></div><div class="mini-bulb"><div class="mini-glass"></div><div class="mini-base"></div></div><span class="art-label">SCREEN → SIGNAL → SPACE</span><span class="art-index">03</span></div>
-<div class="project-info"><div class="project-meta"><span>SIGNALRGB ADDON</span><span>QML</span></div><h3>Let the screen<br>leave the screen.</h3><p>Yeelight Bridge brings PC lighting into the room. Add your bulbs, connect them to SignalRGB, and let the colors follow.</p><button class="project-button" data-project="bridge">Explore Yeelight Bridge <span>↗</span></button></div>
-</article>
-<article class="project-card reveal">
-<div class="project-art server-art" aria-hidden="true"><div class="art-grid"></div><div class="server-orbit one"></div><div class="server-orbit two"></div><div class="server-cube"><span>BRIDGE</span><small>localhost : 8888</small><div><i></i><i></i><i></i><i></i></div></div><span class="network-node n1">BULB_01</span><span class="network-node n2">SIGNALRGB</span><span class="network-node n3">BULB_02</span><span class="art-label">LOCAL FIRST. ALWAYS CONNECTED.</span><span class="art-index">04</span></div>
-<div class="project-info"><div class="project-meta"><span>LOCAL BRIDGE SERVER</span><span>JAVASCRIPT</span></div><h3>The quiet part<br>that makes it work.</h3><p>A local Node.js bridge for bulb control, persistent devices and automatic reconnection. Built to keep the light flowing.</p><button class="project-button" data-project="server">Explore Bridge Server <span>↗</span></button></div>
-</article>
-<article class="project-card reveal">
-<div class="project-art govee-art" aria-hidden="true"><div class="art-grid"></div><div class="lamp"><div class="lamp-glow"></div></div><div class="beats"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span class="ble">BLE</span><span class="art-label">BEAT-REACTIVE. FIXED COLOUR.</span><span class="art-index">05</span></div>
+<div class="project-art govee-art" aria-hidden="true"><div class="art-grid"></div><div class="lamp"><div class="lamp-glow"></div></div><div class="beats"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span class="ble">BLE</span><span class="art-label">BEAT-REACTIVE. FIXED COLOUR.</span><span class="art-index">04</span></div>
 <div class="project-info"><div class="project-meta"><span>HOME ASSISTANT ADD-ON</span><span>PYTHON</span></div><h3>Lamps that keep<br>the beat.</h3><p>Keeps Govee H6076 lamps in beat-reactive music mode with a fixed colour, through Music DreamView and Bluetooth LE.</p><button class="project-button" data-project="govee">Explore Govee Bridge <span>↗</span></button></div>
 </article>
+
 <article class="project-card reveal">
-<div class="project-art comfy-art" aria-hidden="true"><div class="art-grid"></div><svg class="wires" viewBox="0 0 400 260"><path d="M120 95 C170 95 170 150 215 150"/><path d="M120 175 C170 175 170 150 215 150"/></svg><div class="node n-a"><b>Character</b><i></i><i></i></div><div class="node n-b"><b>Captions</b><i></i><i></i></div><div class="node n-c"><b>Identity tags</b><i></i><i></i><i></i></div><span class="art-label">NODES FOR CHARACTER WORKFLOWS</span><span class="art-index">06</span></div>
-<div class="project-info"><div class="project-meta"><span>COMFYUI NODES</span><span>PYTHON</span></div><h3>Characters with<br>a stable identity.</h3><p>ComfyUI nodes for character identity tags, image and caption downloads, and experimental Anima diagnostics.</p><button class="project-button" data-project="comfy">Explore Tag Tools <span>↗</span></button></div>
+<div class="project-art server-art" aria-hidden="true"><div class="art-grid"></div><div class="server-orbit one"></div><div class="server-orbit two"></div><div class="server-cube"><span>BRIDGE</span><small>localhost : 8888</small><div><i></i><i></i><i></i><i></i></div></div><span class="network-node n1">BULB_01</span><span class="network-node n2">SIGNALRGB</span><span class="network-node n3">BULB_02</span><span class="art-label">LOCAL FIRST. ALWAYS CONNECTED.</span><span class="art-index">05</span></div>
+<div class="project-info"><div class="project-meta"><span>LOCAL BRIDGE SERVER</span><span>JAVASCRIPT</span></div><h3>The quiet part<br>that makes it work.</h3><p>A local Node.js bridge for bulb control, persistent devices and automatic reconnection. Built to keep the light flowing.</p><button class="project-button" data-project="server">Explore Bridge Server <span>↗</span></button></div>
+</article>
+
+<article class="project-card reveal">
+<div class="project-art bridge-art" aria-hidden="true"><div class="art-grid"></div><div class="monitor"><div class="monitor-screen"><div class="rgb-wave"></div><div class="code-lines"><i></i><i></i><i></i><i></i></div></div><div class="monitor-neck"></div><div class="monitor-foot"></div></div><div class="signal-dots"><i></i><i></i><i></i><i></i><i></i></div><div class="mini-bulb"><div class="mini-glass"></div><div class="mini-base"></div></div><span class="art-label">SCREEN → SIGNAL → SPACE</span><span class="art-index">06</span></div>
+<div class="project-info"><div class="project-meta"><span>SIGNALRGB ADDON</span><span>QML</span></div><h3>Let the screen<br>leave the screen.</h3><p>Yeelight Bridge brings PC lighting into the room. Add your bulbs, connect them to SignalRGB, and let the colors follow.</p><button class="project-button" data-project="bridge">Explore Yeelight Bridge <span>↗</span></button></div>
 </article></div>
 </section>
 <section class="section rc-section" id="playground" aria-labelledby="rc-heading">
-<div class="section-top"><div class="eyebrow">02 / INSIDE ROUTINE CONTROLLER</div><span class="section-tools"><span class="rc-status"><i aria-hidden="true"></i> HARDWARE STUDY · v0.8</span><a class="skip-study" href="#spatial">Skip Controller <span aria-hidden="true">↓</span></a></span></div>
+<div class="section-top"><div class="eyebrow">03 / INSIDE ROUTINE CONTROLLER</div><span class="section-tools"><span class="rc-status"><i aria-hidden="true"></i> HARDWARE STUDY · v0.8</span><a class="skip-study" href="#spatial">Skip Controller <span aria-hidden="true">↓</span></a></span></div>
 <div class="section-heading"><h2 id="rc-heading">Your home.<br><em>On <span>ESP32.</span></em></h2><p>One integrated display. A battery. A printed enclosure.<br>Scroll to see the actual build come apart.</p></div>
 <div class="rc-scroll"><div class="rc-sticky">
 <div class="rc-copy"><div class="rc-counter">01 / THE DISPLAY MODULE</div><h3>One module.<br>All the control.</h3><p class="rc-description">The 4-inch Guition unit combines the touchscreen, display and ESP32-S3. They stay together in the build, running the ESPHome interface for lights, devices and music.</p><div class="rc-detail">Guition ESP32-S3-4848S040 · 480 × 480</div><a href="https://github.com/artur-safonov/ESPHome-Guition-ESP32-S3-4848S040" target="_blank" rel="noopener">Explore the existing project ↗</a></div>
@@ -119,7 +125,7 @@
 </div></div>
 </section>
 <section class="section vr-section" id="spatial" aria-labelledby="vr-heading">
-<div class="section-top"><div class="eyebrow">NEXT / SPATIAL HOME</div><span class="section-tools"><span class="vr-status"><i aria-hidden="true"></i> EARLY EXPLORATION</span><a class="skip-study" href="#activity">Skip VR <span aria-hidden="true">↓</span></a></span></div>
+<div class="section-top"><div class="eyebrow">04 / SPATIAL HOME</div><span class="section-tools"><span class="vr-status"><i aria-hidden="true"></i> EARLY EXPLORATION</span><a class="skip-study" href="#activity">Skip VR <span aria-hidden="true">↓</span></a></span></div>
 <div class="vr-scroll"><div class="vr-sticky">
 <div class="vr-copy"><h2 id="vr-heading">Your home.<br><em>In <span>VR.</span></em></h2><p class="vr-intro">A headset. A controller.<br> A room you can reach into.</p><div class="vr-chapter">01 / THE IDEA</div><p class="vr-explanation">Smart-home apps hide every device behind a list of tiles. The idea is to skip the list: look at the real device and control it where it stands.</p><div class="vr-stage-label"><i></i> An idea taking shape.<span>Early research and experiments.<br> No working VR home-control system yet.</span></div></div>
 <div class="vr-experience" aria-label="Scroll-driven VR concept: a 3D headset turns its lenses towards you, the view moves through a lens into a room where the headset recognises an air conditioner, a TV and a smart kettle, and the VR controller points at the kettle.">
@@ -133,7 +139,7 @@
 </div></div>
 </section>
 <section class="section activity-section" id="activity">
-<div class="section-top reveal"><div class="eyebrow">03 / STILL BUILDING</div><span class="tag">GITHUB SNAPSHOT · OCT 14, 2026</span></div>
+<div class="section-top reveal"><div class="eyebrow">05 / STILL BUILDING</div><span class="tag">GITHUB SNAPSHOT · OCT 14, 2026</span></div>
 <div class="activity-layout reveal"><div class="activity-copy"><h2>Small commits.<br><em>Long trajectory.</em></h2><p>Every point is a year of showing up.<br>Scrub through the journey.</p><div class="stats-pair"><div><strong>535</strong><span>Commits counted¹</span></div><div><strong>53</strong><span>Pull requests</span></div><div><strong>707</strong><span>Contributions</span></div><div><strong>51</strong><span>Repositories owned</span></div></div></div>
 <div class="chart-panel"><div class="chart-meta"><span>CONTRIBUTIONS / YEAR</span><div><strong id="year-value">343</strong><span id="year-label">2026</span></div></div><svg id="history-chart" viewBox="0 0 650 310" role="group" aria-label="Contributions by year"></svg><div class="timeline-control"><button id="replay" aria-label="Replay contribution journey">↗</button><label for="timeline" class="sr-only">Contribution year</label><input id="timeline" type="range" min="0" max="9" value="9" step="1"><span id="timeline-year" class="mono">2026</span></div></div></div>
 <div class="stats-note">¹ Commits attributed to this GitHub account on accessible default branches. Snapshot includes public and private activity; it is not a live or exhaustive all-branch count.</div>
@@ -147,5 +153,6 @@
 <dialog id="project-dialog"><button class="dialog-close" aria-label="Close project details">×</button><span class="eyebrow" id="dialog-category"></span><h2 id="dialog-title"></h2><p id="dialog-description"></p><div class="architecture" id="dialog-architecture"></div><ul id="dialog-features"></ul><a id="dialog-link" class="button primary" target="_blank" rel="noopener">View source on GitHub <span>↗</span></a></dialog>
 <dialog id="command-dialog"><div class="command-heading"><span class="eyebrow">WHERE TO?</span><button class="command-close" aria-label="Close menu">ESC</button></div><label class="sr-only" for="command-search">Search portfolio sections</label><input id="command-search" placeholder="Find a section…" autocomplete="off"><div id="command-results"></div><p class="command-hint">Tab to navigate · Enter to open · Esc to close</p></dialog>
 <div class="toast" role="status" id="toast"></div>
+<nav class="section-rail" aria-label="Page sections" style="--rail-accent:#bca4ff"><a href="#top"><span class="rail-label">Intro</span></a><a href="#web"><span class="rail-label"><b>01</b>On the web</span></a><a href="#work"><span class="rail-label"><b>02</b>Selected work</span></a><a href="#playground"><span class="rail-label"><b>03</b>Controller</span></a><a href="#spatial"><span class="rail-label"><b>04</b>Spatial home</span></a><a href="#activity"><span class="rail-label"><b>05</b>GitHub</span></a><a href="#connect"><span class="rail-label">Contact</span></a></nav>
 <nav class="site-switcher" aria-label="Explore Artur Safonov sites" style="--site-nav-accent:#bca4ff"><a href="https://artursafonov.me/">Home</a><a href="https://portfolio.artursafonov.me/" aria-current="page">Portfolio</a><a href="https://ai.artursafonov.me/">AI Field</a></nav>
 </body></html>

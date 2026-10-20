@@ -1,0 +1,18 @@
+/* Right-edge section rail: one long tick per section, short ticks fill with progress. */
+.section-rail{--rail-accent:#c5f881;--rail-dim:#ffffff38;position:fixed;z-index:90;right:clamp(14px,1.6vw,30px);top:50%;transform:translateY(-50%);display:flex;flex-direction:column;align-items:flex-end;gap:7px;padding:14px 0 14px 18px}
+.section-rail a{position:relative;display:flex;align-items:center;justify-content:flex-end;width:44px;height:12px;color:inherit;text-decoration:none;outline:none}
+.section-rail a::after{content:"";display:block;width:16px;height:2px;border-radius:2px;background:var(--rail-dim);transition:width .45s cubic-bezier(.2,.75,.2,1),background .3s,box-shadow .3s}
+.section-rail a.near::after{width:22px;background:#ffffff5c}
+.section-rail a:hover::after,.section-rail a:focus-visible::after{width:28px;background:#ffffffc0}
+.section-rail a[aria-current]::after{width:40px;background:var(--rail-accent);box-shadow:0 0 12px color-mix(in srgb,var(--rail-accent),transparent 45%)}
+.section-rail a:focus-visible{outline:1px solid var(--rail-accent);outline-offset:4px;border-radius:3px}
+.rail-label{position:absolute;right:calc(100% + 10px);top:50%;transform:translate(8px,-50%);display:flex;gap:9px;align-items:baseline;white-space:nowrap;pointer-events:none;opacity:0;font:500 10px/1 "Cascadia Code",Consolas,ui-monospace,monospace;letter-spacing:.14em;text-transform:uppercase;color:#e9e7f0;padding:6px 9px;border-radius:5px;background:#0d0e13d9;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transition:opacity .3s,transform .4s cubic-bezier(.2,.75,.2,1)}
+.rail-label b{font-weight:500;color:var(--rail-accent)}
+.section-rail a:hover .rail-label,.section-rail a:focus-visible .rail-label,.section-rail:hover a[aria-current] .rail-label{opacity:1;transform:translate(0,-50%)}
+.section-rail:hover a:not(:hover):not([aria-current]) .rail-label{opacity:.55;transform:translate(0,-50%)}
+.rail-minor{display:flex;flex-direction:column;align-items:flex-end;gap:7px;pointer-events:none}
+.rail-minor i{display:block;width:8px;height:1px;background:#ffffff26;transition:width .35s,background .35s}
+.rail-minor i.lit{width:11px;background:color-mix(in srgb,var(--rail-accent),transparent 30%)}
+@media(min-width:1560px){.section-rail a[aria-current] .rail-label{opacity:1;transform:translate(0,-50%);background:transparent;backdrop-filter:none;-webkit-backdrop-filter:none}}
+@media(max-width:900px),(max-height:520px){.section-rail{display:none}}
+@media(prefers-reduced-motion:reduce){.section-rail a::after,.rail-label,.rail-minor i{transition:none}}
