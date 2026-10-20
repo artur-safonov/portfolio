@@ -17,18 +17,21 @@ if (!years.length) {
   console.log('No contribution years for this token; chart data left unchanged');
   process.exit(0);
 }
-const yearsQ = years.map((year) => 'y' + year + ':contributionsCollection(from:"' + year + '-01-01T00:00:00Z",to:"' + year + '-12-31T23:59:59Z"){totalCommitContributions totalPullRequestContributions contributionCalendar{totalContributions}}').join(' ');
-const yrs = gql('query{viewer{' + yearsQ + ' repositories(ownerAffiliations:OWNER){totalCount}}}');
+const yearsQ = years.map((year) => 'y' + year + ':contributionsCollection(from:"' + year + '-01-01T00:00:00Z",to:"' + year + '-12-31T23:59:59Z"){contributionCalendar{totalContributions}}').join(' ');
+const yrs = gql('query{viewer{' + yearsQ + '}}');
+const login = gql('query{viewer{login id}}');
+const repoInfo = gql('query{viewer{repositories(ownerAffiliations:OWNER,first:100){totalCount nodes{defaultBranchRef{target{... on Commit{history(author:{id:"' + login.id + '"}){totalCount}}}}}}}}').repositories;
+const commits = repoInfo.nodes.reduce((total, repo) => total + (repo.defaultBranchRef?.target?.history?.totalCount || 0), 0);
+const pullRequests = JSON.parse(execFileSync('gh', ['api', 'graphql', '-f', 'query=query{search(query:"author:' + login.login + ' type:pr",type:ISSUE){issueCount}}'], { encoding: 'utf8', env: { ...process.env, GH_TOKEN: token } })).data.search.issueCount;
 const yearEntries = Object.entries(yrs).filter(([key]) => /^y\d{4}$/.test(key));
-const sum = (pick) => yearEntries.reduce((total, [, value]) => total + pick(value), 0);
 const perYear = Object.fromEntries(yearEntries.map(([key, value]) => [Number(key.slice(1)), value.contributionCalendar.totalContributions]).sort((a, b) => a[0] - b[0]));
 const data = {
   years: Object.keys(perYear).map(Number),
   values: Object.values(perYear),
   summary: {
-    commits: sum((value) => value.totalCommitContributions),
-    pullRequests: sum((value) => value.totalPullRequestContributions),
-    repositories: yrs.repositories.totalCount
+    commits,
+    pullRequests,
+    repositories: repoInfo.totalCount
   },
   generatedAt: new Date().toISOString().slice(0, 10)
 };
