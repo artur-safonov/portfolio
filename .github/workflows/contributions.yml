@@ -17,6 +17,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - name: Verify daily refresh behavior
+        run: node --test tests/update-contributions.test.mjs
       - name: Refresh yearly contributions
         env:
           GH_TOKEN: ${{ secrets.STATS_TOKEN }}
