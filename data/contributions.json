@@ -21,12 +21,13 @@
     96,
     77,
     104,
-    438
+    449
   ],
   "summary": {
-    "commits": 472,
-    "pullRequests": 59,
+    "commits": 639,
+    "pullRequests": 62,
     "repositories": 74
   },
-  "generatedAt": "2026-10-28"
+  "generatedAt": "2026-10-28",
+  "source": "https://raw.githubusercontent.com/artur-safonov/artur-safonov/main/data/stats.json"
 }

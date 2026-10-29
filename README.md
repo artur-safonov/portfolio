@@ -18,7 +18,9 @@ Live: https://portfolio.artursafonov.me
 
 
 
-The contribution chart is refreshed every day by GitHub Actions.
+The GitHub profile repository (`artur-safonov/artur-safonov`) is the single statistics collector. Its `Update GitHub stats` workflow publishes `data/stats.json`; the portfolio reads that exact snapshot for its chart and all four counters. Commits cover the account's accessible owned, collaborator, organization and contributed-to repositories, deduplicated by repository, using author-filtered default-branch histories. Private activity depends on the profile collector's token permissions.
+
+The portfolio's `Sync profile statistics` workflow copies the public profile snapshot into `data/contributions.json` daily at 04:43 UTC (20 minutes after the profile's scheduled start) and on manual dispatch. It does not query GraphQL or need `STATS_TOKEN`. The browser tries the profile source first, then the published portfolio cache, then the bundled cache. Cache dates remain the original collection date; invalid or legacy owner-only caches are rejected. If every source fails, the page shows an unavailable state instead of fabricated counters. Run `node scripts/update-contributions.mjs` to sync locally and `node --test tests/update-contributions.test.mjs` to verify synchronization.
 
 
 

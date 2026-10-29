@@ -87,20 +87,7 @@ function closeOnBackdrop(d){d.addEventListener('click',e=>{const r=d.getBounding
 closeOnBackdrop(dialog);
 // Keep focus areas intentionally explorable; multiple can stay open.
 
-// Inspectable chart. Numbers come from data/contributions.json, refreshed daily.
-const snapshot={years:[2017,2018,2019,2020,2021,2022,2023,2024,2025,2026],values:[13,0,19,7,71,5,96,77,104,343]};
-async function loadContributions(){
-  const urls=['https://raw.githubusercontent.com/artur-safonov/portfolio/main/data/contributions.json','./data/contributions.json'];
-  for(const url of urls){
-    try{
-      const response=await fetch(url,{cache:'no-store'});
-      if(!response.ok) continue;
-      const data=await response.json();
-      if(Array.isArray(data.years)&&Array.isArray(data.values)&&data.years.length>1&&data.years.length===data.values.length) return data;
-    }catch{}
-  }
-  return snapshot;
-}
+// Use the same published snapshot as the GitHub profile; keep a validated cache for outages.
 function drawContributionChart(series){
   const years=series.years.map(Number), values=series.values.map(Number), n=years.length;
   const chart=$('#history-chart');
@@ -184,7 +171,13 @@ function showSummary(data){
   const tag=document.getElementById('stats-date');
   if(tag&&!isNaN(date))tag.textContent='GITHUB SNAPSHOT · '+date.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric',timeZone:'UTC'}).toUpperCase();
 }
-loadContributions().then(data=>{drawContributionChart(data);if(data.generatedAt&&data.summary)showSummary(data)});
+import('./stats-data.mjs').then(({loadContributions})=>loadContributions()).then(data=>{
+  drawContributionChart(data);showSummary(data);
+}).catch(()=>{
+  document.getElementById('stats-date').textContent='GITHUB SNAPSHOT · UNAVAILABLE';
+  document.getElementById('timeline').disabled=true;
+  document.getElementById('replay').disabled=true;
+});
 
 // Useful navigation rather than a pretend terminal.
 const command=$('#command-dialog'),search=$('#command-search');

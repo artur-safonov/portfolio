@@ -1,8 +1,8 @@
-name: Update contribution chart
+name: Sync profile statistics
 
 on:
   schedule:
-    - cron: "23 4 * * *"
+    - cron: "43 4 * * *"
   workflow_dispatch:
 
 permissions:
@@ -17,11 +17,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Verify daily refresh behavior
+      - name: Verify profile snapshot synchronization
         run: node --test tests/update-contributions.test.mjs
-      - name: Refresh yearly contributions
-        env:
-          GH_TOKEN: ${{ secrets.STATS_TOKEN }}
+      - name: Copy the published profile snapshot
         run: node scripts/update-contributions.mjs
       - name: Commit when the chart changes
         run: |
